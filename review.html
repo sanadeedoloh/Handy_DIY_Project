@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<!-- Created by CodingLab |www.youtube.com/CodingLabYT-->
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <!--<title> Drop Down Sidebar Menu | CodingLab </title>-->
+    <link rel="stylesheet" href="tabbar.css">
+    <link rel="stylesheet" href="css/total_content.css">
+    <!-- Boxiocns CDN Link -->
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+
+<body>
+    <div class="sidebar close">
+        <div class="logo-details">
+            <img src="https://www.img.in.th/images/5c29773c206c50496733b3302976aec0.png"
+                alt="5c29773c206c50496733b3302976aec0.png" border="0" /></a>
+            <span class="logo_name">Community</span>
+        </div>
+        <ul class="nav-links">
+
+            <li>
+                <a href="profile-blog.html">
+                    <i class='bx bx-user'></i>
+                    <span class="link_name">Profile</span>
+                </a>
+                <ul class="sub-menu blank">
+                    <li><a class="link_name" href="#">Profile</a></li>
+                </ul>
+            </li>
+
+            <li>
+                <a href="total_content.html">
+                    <i class='bx bx-grid-alt'></i>
+                    <span class="link_name">Home</span>
+                </a>
+                <ul class="sub-menu blank">
+                    <li><a class="link_name" href="#">Home</a></li>
+                </ul>
+            </li>
+
+            <li>
+                <a href="video.html">
+                    <i class='bx bx-play-circle'></i>
+                    <span class="link_name">Video</span>
+                </a>
+                <ul class="sub-menu blank">
+                    <li><a class="link_name" href="#">Video</a></li>
+                </ul>
+            </li>
+
+
+
+            <li>
+                <a href="article.html">
+                    <i class='bx bx-news'></i>
+                    <span class="link_name">article</span>
+                </a>
+                <ul class="sub-menu blank">
+                    <li><a class="link_name" href="#">article</a></li>
+                </ul>
+            </li>
+            <li>
+                <a style="background-color: #ffbb00;" href="#">
+                    <i class='bx bx-calendar-star'></i>
+                    <span class="link_name">Review</span>
+                </a>
+                <ul class="sub-menu blank">
+                    <li><a class="link_name" href="#">Review</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="setting.html">
+                    <i class='bx bx-cog'></i>
+                    <span class="link_name">Setting</span>
+                </a>
+                <ul class="sub-menu blank">
+                    <li><a class="link_name" href="#">Setting</a></li>
+                </ul>
+            </li>
+
+        </ul>
+    </div>
+    <!--  ส่วนเนื้อหา -->
+    <section class="home-section">
+        <div class="home-content">
+            <i class='bx bx-menu'></i>
+
+        </div>
+        <div class="">
+            <hr class="style3">
+        </div>
+        <br>
+
+
+
+        <!--< event >-->
+        <div>
+
+            <button type="button" class="btn btn-lg card p-3 " id="card" disabled>
+                <div class="icon-bar">
+                    <div class="">
+
+                        <!-- Button trigger modal   -->
+
+                        <a data-toggle="modal" data-target="#exampleModal"><i
+                                class='bx bx-bookmark-plus'></i>ฝากร้าน</a>
+            </button>
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="indicator"></div>
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel"></h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="media mb-3">
+
+
+                                <form class="md-form">
+                                    <div class="file-field">
+                                        <div>
+                                            <img src="https://cdn-icons-png.flaticon.com/512/1524/1524872.png"
+                                                width="100">
+                                        </div><br>
+                                        <input type="file"><br><br>
+
+
+                                        <input class="form-control" type="text" placeholder="หัวข้อ"><br>
+                                        <input class="form-control" type="text" placeholder="รายละเอียด"><br>
+                                        <p>Contact</p>
+                                        <input class="form-control" type="text" placeholder="Facebook"><br>
+                                        <input class="form-control" type="text" placeholder="เบอร์โทร"><br>
+                                        <input class="form-control" type="text" placeholder="ลิงก์"><br>
+                                    </div>
+                                </form>
+
+                            </div>
+                        </div>
+
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancel</button>
+                            <span class="btn btn-info btn-sm" disabled>Upload</span>
+                        </div>
+                    </div>
+                </div>
+            </div></button>
+        </div>
+
+
+        <!-- partial -->
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js'></script>
+        <script src='https://unpkg.com/popper.js@1'></script>
+        <script src='https://unpkg.com/tippy.js@4'></script>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/autosize.js/4.0.2/autosize.min.js'></script>
+        <script
+            src='https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/1.4.0/perfect-scrollbar.min.js'></script>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js'></script>
+        <script src="./script.js"></script>
+
+
+
+        </div></button></div>
+
+
+
+
+
+
+        <div class="card-columns" style="padding: 5%;">
+
+            <div class="card p-3" id="card">
+                <img class="card-img-top"
+                    src="https://www.wazzadu.com/thumbs/article/resize/760/image_2215cf40-0c6e-11e7-a4a8-2924d0180ec5.jpg"
+                    alt="Card image cap">
+                <div class="card-body">
+                    <dt class="col-sm-9">carttteeeeeeeeeeeeeeeeeeett</dt>
+                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to
+                        additional content. This content is a little bit longer.</p>
+
+                    <a href=""><i class='bx bxl-facebook-square' style='color:#0056b3'> Facebook</i></a><br>
+                    <a href=""><i class='bx bxs-phone' style='color:#127b01'> Tellephone</i></a><br>
+                    <i class='bx bxl-shopify' style='color:#af0404'> Online Shopping</i>
+                </div>
+
+                <div class="rating"> <input type="radio" name="rating" value="5" id="5"><label for="5">☆</label> <input
+                        type="radio" name="rating" value="4" id="4"><label for="4">☆</label> <input type="radio"
+                        name="rating" value="3" id="3"><label for="3">☆</label> <input type="radio" name="rating"
+                        value="2" id="2"><label for="2">☆</label> <input type="radio" name="rating" value="1"
+                        id="1"><label for="1">☆</label>
+                </div>
+            </div>
+            <div class="card p-3" id="card">
+                <img class="card-img-top" src="https://cdn.jeab.com/wp-content/uploads/2015/05/171.jpg"
+                    alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Card title that wraps to a new line</h5>
+                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to
+                        additional .</p>
+                    <a href=""><i class='bx bxl-facebook-square' style='color:#0056b3'> Facebook</i></a><br>
+                    <a href=""><i class='bx bxs-phone' style='color:#127b01'> Tellephone</i></a><br>
+                    <i class='bx bxl-shopify' style='color:#af0404'> Online Shopping</i>
+                </div>
+                <div class="rating"> <input type="radio" name="rating" value="5" id="5"><label for="5">☆</label> <input
+                        type="radio" name="rating" value="4" id="4"><label for="4">☆</label> <input type="radio"
+                        name="rating" value="3" id="3"><label for="3">☆</label> <input type="radio" name="rating"
+                        value="2" id="2"><label for="2">☆</label> <input type="radio" name="rating" value="1"
+                        id="1"><label for="1">☆</label>
+                </div>
+            </div>
+            <div class="card p-3" id="card">
+                <img class="card-img-top"
+                    src="https://s.isanook.com/ca/0/ud/189/949884/1.jpg"
+                    alt="Card image cap">
+                <div class="card-body">
+                    <dt class="col-sm-9">carttteeeeeeeeeeeeeeeeeeett</dt>
+                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to
+                        additional content. This content is a little bit longer.</p>
+
+                    <a href=""><i class='bx bxl-facebook-square' style='color:#0056b3'> Facebook</i></a><br>
+                    <a href=""><i class='bx bxs-phone' style='color:#127b01'> Tellephone</i></a><br>
+                    <i class='bx bxl-shopify' style='color:#af0404'> Online Shopping</i>
+                </div>
+
+                <div class="rating"> <input type="radio" name="rating" value="5" id="5"><label for="5">☆</label> <input
+                        type="radio" name="rating" value="4" id="4"><label for="4">☆</label> <input type="radio"
+                        name="rating" value="3" id="3"><label for="3">☆</label> <input type="radio" name="rating"
+                        value="2" id="2"><label for="2">☆</label> <input type="radio" name="rating" value="1"
+                        id="1"><label for="1">☆</label>
+                </div>
+            </div>
+            <div class="card p-3" id="card">
+                <img class="card-img-top"
+                    src="https://www.wazzadu.com/thumbs/article/resize/760/image_2215cf40-0c6e-11e7-a4a8-2924d0180ec5.jpg"
+                    alt="Card image cap">
+                <div class="card-body">
+                    <dt class="col-sm-9">carttteeeeeeeeeeeeeeeeeeett</dt>
+                    <p class="card-text">This is a longer card with supporting .</p>
+
+                    <a href=""><i class='bx bxl-facebook-square' style='color:#0056b3'> Facebook</i></a><br>
+                    <a href=""><i class='bx bxs-phone' style='color:#127b01'> Tellephone</i></a><br>
+                    <i class='bx bxl-shopify' style='color:#af0404'> Online Shopping</i>
+                </div>
+
+                <div class="rating"> <input type="radio" name="rating" value="5" id="5"><label for="5">☆</label> <input
+                        type="radio" name="rating" value="4" id="4"><label for="4">☆</label> <input type="radio"
+                        name="rating" value="3" id="3"><label for="3">☆</label> <input type="radio" name="rating"
+                        value="2" id="2"><label for="2">☆</label> <input type="radio" name="rating" value="1"
+                        id="1"><label for="1">☆</label>
+                </div>
+            </div>
+            <div class="card p-3" id="card">
+                <img class="card-img-top"
+                    src="https://www.wazzadu.com/thumbs/article/resize/760/image_2215cf40-0c6e-11e7-a4a8-2924d0180ec5.jpg"
+                    alt="Card image cap">
+                <div class="card-body">
+                    <dt class="col-sm-9">carttteeeeeeeeeeeeeeeeeeett</dt>
+                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to
+                        .</p>
+
+                    <a href=""><i class='bx bxl-facebook-square' style='color:#0056b3'> Facebook</i></a><br>
+                    <a href=""><i class='bx bxs-phone' style='color:#127b01'> Tellephone</i></a><br>
+                    <i class='bx bxl-shopify' style='color:#af0404'> Online Shopping</i>
+                </div>
+
+                <div class="rating"> <input type="radio" name="rating" value="5" id="5"><label for="5">☆</label> <input
+                        type="radio" name="rating" value="4" id="4"><label for="4">☆</label> <input type="radio"
+                        name="rating" value="3" id="3"><label for="3">☆</label> <input type="radio" name="rating"
+                        value="2" id="2"><label for="2">☆</label> <input type="radio" name="rating" value="1"
+                        id="1"><label for="1">☆</label>
+                </div>
+            </div>
+            <div class="card p-3" id="card">
+                <img class="card-img-top"
+                    src="https://s.isanook.com/ca/0/ud/189/949884/1.jpg"
+                    alt="Card image cap">
+                <div class="card-body">
+                    <dt class="col-sm-9">carttteeeeeeeeeeeeeeeeeeett</dt>
+                    <p class="card-text">This is a longer </p>
+
+                    <a href=""><i class='bx bxl-facebook-square' style='color:#0056b3'> Facebook</i></a><br>
+                    <a href=""><i class='bx bxs-phone' style='color:#127b01'> Tellephone</i></a><br>
+                    <i class='bx bxl-shopify' style='color:#af0404'> Online Shopping</i>
+                </div>
+
+                <div class="rating"> <input type="radio" name="rating" value="5" id="5"><label for="5">☆</label> <input
+                        type="radio" name="rating" value="4" id="4"><label for="4">☆</label> <input type="radio"
+                        name="rating" value="3" id="3"><label for="3">☆</label> <input type="radio" name="rating"
+                        value="2" id="2"><label for="2">☆</label> <input type="radio" name="rating" value="1"
+                        id="1"><label for="1">☆</label>
+                </div>
+            </div>
+
+        </div>
+
+
+
+
+
+
+
+
+
+    </section>
+    <script>
+        let arrow = document.querySelectorAll(".arrow");
+        for (var i = 0; i < arrow.length; i++) {
+            arrow[i].addEventListener("click", (e) => {
+                let arrowParent = e.target.parentElement.parentElement;//selecting main parent of arrow
+                arrowParent.classList.toggle("showMenu");
+            });
+        }
+        let sidebar = document.querySelector(".sidebar");
+        let sidebarBtn = document.querySelector(".bx-menu");
+        console.log(sidebarBtn);
+        sidebarBtn.addEventListener("click", () => {
+            sidebar.classList.toggle("close");
+        });
+    </script>
+</body>
+
+</html>
