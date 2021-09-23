@@ -15,6 +15,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script>scr= "https://www.gstatic.com/firebasejs/9.0.2/firebase-app.js"</script>
+    <script>scr= "https://www.gstatic.com/firebasejs/9.0.2/firebase-storage.js"</script>
 
 
 <body>
@@ -167,7 +169,10 @@
                                                 <img src="https://cdn-icons-png.flaticon.com/512/685/685686.png"
                                                     width="100">
                                             </div><br>
-                                            <input type="file">
+                                            <input type="file" id="file">
+                                            <progress id="progress_bar" value= "0" max="100"> </progress>
+
+
                                             
                                             <div class="form-check">
                                                 <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
@@ -322,6 +327,10 @@
 
 
     </section>
+    //upload post 
+    <script>
+    src="app.js" type = "text/javascript"
+    </script>
     <script>
         let arrow = document.querySelectorAll(".arrow");
         for (var i = 0; i < arrow.length; i++) {
