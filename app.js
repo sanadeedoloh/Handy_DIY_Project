@@ -9,20 +9,23 @@ var firebaseConfig = {
     appId: "1:607537332451:web:0b8d073bfffac7f30f85d6",
     measurementId: "G-T8XWSP705V"
   };
-   // Initialize Firebase
-   firebase.initializeApp(firebaseConfig);
-  
-   document.getElementById('file').addEventListener('change',(event)=>{
-       const file = event.target.files[0];
-       const storageRef = firebase.storage().ref('images/'+file.name);
-       const task = storagerRef.put(file);
-       task.on('state_change', (snapshot)=>{
-            const progress = (snanpshot.bytesTransferred / snapshot.totalBytes)*100;
-            const progressBar = document.getElementById('progress_bar');
-            progressBar.value = progress;
-       
-        })
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
 
+document.getElementById('file').addEventListener('change', (event) => {
+    const file = event.target.files[0];
+    const storageRef = firebase.storage().ref('images/' + file.name);
 
+    storageRef.put(file).on('state_changed', (snapshot) => {
+        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        console.log(progress);
+        const progressBar = document.getElementById('progress_bar');
+        progressBar.value = progress;
+    });
 
-   });
+    storageRef.getDownloadURL().then(function(url){
+        const image = document.getElementById('image');
+        console.log(url);
+        image.src = url
+    });
+});
