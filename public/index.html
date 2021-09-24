@@ -13,6 +13,8 @@
         <link rel="stylesheet" type="text/css" href="index.css">
     </head>
     <body>
+
+
         <div id="content_container">
             <div id="form_container">
                 <div id="form_header_container">
@@ -25,19 +27,21 @@
                         <input type="email" id="email" placeholder="Email">
                         <input type="password" id="password" placeholder="New Password">
 
-                        <input type="text" id="favourite_song" placeholder="Telephone number">
-         
-
+                        <input type="text" id="confirm_password" placeholder="Confirm Password">
+                       
                         <div id="button_container">
-                          <!--  <button onclick="login()">Login</button>-->
+                            
                             <button onclick="register()">Register</button>
-                           <!-- <button onclick="SignOut()">SignOut</button>-->
+                            <!--<button onclick="SignOut()">SignOut</button>-->
                         </div>
 
                     </div>
                 </div>
             </div>
         </div>
+
+
+
     </body>
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
@@ -49,6 +53,6 @@
 <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
 
     <!-- Our script must be loaded after firebase references -->
-    <script src="index.js"></script>
+    <script src="login_register.js"></script>
 
 </html>
