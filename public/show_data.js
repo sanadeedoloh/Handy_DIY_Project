@@ -1,32 +1,27 @@
 
-// Your web app's Firebase configuration
-const firebaseConfig = {
-    apiKey: "AIzaSyCjw9hEux7cBFUaTM5-V2fsCmjPbpmj9yo",
-    authDomain: "diyproject-93b1f.firebaseapp.com",
-    projectId: "diyproject-93b1f",
-    storageBucket: "diyproject-93b1f.appspot.com",
-    messagingSenderId: "25915915585",
-    appId: "1:25915915585:web:89f1e518c905db9158f5c0",
-    measurementId: "G-XRGSS0L8WP"
+  // Set the configuration for your app
+  // TODO: Replace with your project's config object
+  var config = {
+    apiKey: "apiKey",
+    authDomain: "projectId.firebaseapp.com",
+    // For databases not in the us-central1 location, databaseURL will be of the
+    // form https://[databaseName].[region].firebasedatabase.app.
+    // For example, https://your-database-123.europe-west1.firebasedatabase.app
+    databaseURL: "https://databaseName.firebaseio.com",
+    storageBucket: "bucket.appspot.com"
   };
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-  // Initialize variables
-  const auth = firebase.auth()
-  const database = firebase.database()
+  firebase.initializeApp(config);
+
+  // Get a reference to the database service
+  var database = firebase.database();
   
-  // Set up our register function
-  function loadUser() {
-   
-    
- 
-   
-   
   
-    
+  
+  function show_data() {
+   
+   
     
   }
-
 
 
 

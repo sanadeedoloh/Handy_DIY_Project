@@ -1,18 +1,23 @@
+
 // Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyCjw9hEux7cBFUaTM5-V2fsCmjPbpmj9yo",
   authDomain: "diyproject-93b1f.firebaseapp.com",
+  databaseURL: "https://diyproject-93b1f-default-rtdb.firebaseio.com",
   projectId: "diyproject-93b1f",
   storageBucket: "diyproject-93b1f.appspot.com",
   messagingSenderId: "25915915585",
   appId: "1:25915915585:web:89f1e518c905db9158f5c0",
   measurementId: "G-XRGSS0L8WP"
 };
+
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 // Initialize variables
 const auth = firebase.auth()
 const database = firebase.database()
+//const db = firebase.firestore();
+
 
 // Set up our register function
 function register() {
@@ -37,7 +42,9 @@ function register() {
 
   // Move on with Auth
   auth.createUserWithEmailAndPassword(email, password)
-    .then(function () {
+ 
+  .then(function () {
+   
       // Declare user variable
       var user = auth.currentUser
 
@@ -62,7 +69,7 @@ function register() {
       database_ref.child('users/' + user.uid).set(user_data)
 
       // DOne
-      alert('User Created!!')
+      alert('Register สำเร็จ')
       
     })
     .catch(function (error) {
@@ -102,7 +109,7 @@ function login() {
         
       }
       if (user) {
-        // User is signed in.
+        // User is login in.
         console.log(user);
         window.location.href = '../profile-blog.html';
     } 
@@ -110,7 +117,7 @@ function login() {
       database_ref.child('users/' + user.uid).update(user_data)
 
       // DOne
-      alert('User Logged In!!')
+      alert('Login สำเร็จ')
       
 
     })
@@ -151,7 +158,7 @@ function validate_password(password) {
 function SignOut() {
   auth.SignOut();
   alert("Sign Out");
-  window.location.href = 'login.html';
+  
 
 }
 
