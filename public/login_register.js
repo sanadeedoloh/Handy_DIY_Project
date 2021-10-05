@@ -16,7 +16,7 @@ firebase.initializeApp(firebaseConfig);
 // Initialize variables
 const auth = firebase.auth()
 const database = firebase.database()
-//const db = firebase.firestore();
+const db = firebase.firestore();
 
 
 // Set up our register function
@@ -26,7 +26,7 @@ function register() {
   password = document.getElementById('password').value
   full_name = document.getElementById('full_name').value
   confirm_password = document.getElementById('confirm_password').value
-  
+
 
   // Validate input fields
   if (validate_email(email) == false || validate_password(password) == false) {
@@ -34,18 +34,18 @@ function register() {
     return
     // Don't continue running the code
   }
-  if (validate_field(full_name) == false || validate_field(confirm_password) == false ) {
+  if (validate_field(full_name) == false || validate_field(confirm_password) == false) {
     alert('One or More Extra Fields is Outta Line!!')
     return
   }
- 
+
 
   // Move on with Auth
-  auth.createUserWithEmailAndPassword(email, password)
- 
-  .then(function () {
-   
-      // Declare user variable
+  auth.createUserWithEmailAndPassword(email, password).then(cred => {
+    return db.collection('users').doc(cred.user.uid).set({
+      email: document.getElementById('email').value,
+      name: document.getElementById('full_name').value
+    }).then(() => {
       var user = auth.currentUser
 
       // Add this user to Firebase Database
@@ -53,31 +53,23 @@ function register() {
 
       // Create User data
       var user_data = {
-        email: email,
-        full_name: full_name,
-        confirm_password: confirm_password,
-        
         last_login: Date.now()
+
       }
       if (user) {
-        // User is signed in.
+        // User is login in.
         console.log(user);
         window.location.href = 'login.html';
-    } 
-
-      // Push to Firebase Database
-      database_ref.child('users/' + user.uid).set(user_data)
-
-      // DOne
-      alert('Register สำเร็จ')
+      }
       
+      alert('Register สำเร็จ')
     })
+  })
+  
     .catch(function (error) {
-      // Firebase will use this to alert of its errors
-      var error_code = error.code
+      var error_code = error.code;
       var error_message = error.message
-
-      alert(error_message)
+      alert(error_message + error_code)
     })
 }
 
@@ -95,7 +87,7 @@ function login() {
   }
 
   auth.signInWithEmailAndPassword(email, password)
-  
+
     .then(function () {
       // Declare user variable
       var user = auth.currentUser
@@ -106,19 +98,19 @@ function login() {
       // Create User data
       var user_data = {
         last_login: Date.now()
-        
+
       }
       if (user) {
         // User is login in.
         console.log(user);
-        window.location.href = '../profile-blog.html';
-    } 
+        window.location.href = '../total_content.html';
+      }
       // Push to Firebase Database
       database_ref.child('users/' + user.uid).update(user_data)
 
       // DOne
       alert('Login สำเร็จ')
-      
+
 
     })
 
@@ -158,7 +150,7 @@ function validate_password(password) {
 function SignOut() {
   auth.SignOut();
   alert("Sign Out");
-  
+
 
 }
 
@@ -174,3 +166,16 @@ function validate_field(field) {
     return true
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
