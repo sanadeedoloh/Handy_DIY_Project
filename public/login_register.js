@@ -17,7 +17,7 @@ firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth()
 const database = firebase.database()
 const db = firebase.firestore();
-
+const userList = document.querySelector('#userList');
 
 // Set up our register function
 function register() {
@@ -26,6 +26,8 @@ function register() {
   password = document.getElementById('password').value
   full_name = document.getElementById('full_name').value
   confirm_password = document.getElementById('confirm_password').value
+  // phone = null
+  // detail = null
 
 
   // Validate input fields
@@ -38,13 +40,20 @@ function register() {
     alert('One or More Extra Fields is Outta Line!!')
     return
   }
+  if (password !== confirm_password) {
+    alert('ยืนยันรหัสผ่านไม่ตรงกัน')
+    return
+  }
 
 
   // Move on with Auth
   auth.createUserWithEmailAndPassword(email, password).then(cred => {
     return db.collection('users').doc(cred.user.uid).set({
       email: document.getElementById('email').value,
-      name: document.getElementById('full_name').value
+      name: document.getElementById('full_name').value,
+      phone: null,
+      detail: null
+      
     }).then(() => {
       var user = auth.currentUser
 
@@ -91,7 +100,6 @@ function login() {
     .then(function () {
       // Declare user variable
       var user = auth.currentUser
-
       // Add this user to Firebase Database
       var database_ref = database.ref()
 
@@ -103,7 +111,12 @@ function login() {
       if (user) {
         // User is login in.
         console.log(user);
-        window.location.href = '../total_content.html';
+        window.location.href = '../page/total_content.html';
+        localStorage.setItem('email', email);
+        console.log();
+      
+      
+        
       }
       // Push to Firebase Database
       database_ref.child('users/' + user.uid).update(user_data)
@@ -166,8 +179,6 @@ function validate_field(field) {
     return true
   }
 }
-
-
 
 
 

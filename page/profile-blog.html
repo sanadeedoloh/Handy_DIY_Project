@@ -5,9 +5,9 @@
 <head>
     <meta charset="UTF-8">
     <!--<title> Drop Down Sidebar Menu | CodingLab </title>-->
-    <link rel="stylesheet" href="tabbar.css">
-    <link rel="stylesheet" href="css/total_content.css">
-    <link rel="stylesheet" href="profile.css">
+    <link rel="stylesheet" href="../css/tabbar.css">
+    <link rel="stylesheet" href="../css/total_content.css">
+    <link rel="stylesheet" href="../css/profile.css">
     <!-- Boxiocns CDN Link -->
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,8 +15,6 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-storage.js"></script>
 
 
 
@@ -24,9 +22,8 @@
 <body>
     <div class="sidebar close">
         <div class="logo-details">
-            <img src=""
-                 /></a>
-            <span class="logo_name">Community</span>
+            <img src="../img/handy_logo2.png" width="70px" height="70px"></a>
+            <span class="logo_name">Handy</span>
         </div>
         <ul class="nav-links">
 
@@ -112,31 +109,38 @@
                 <div class="" style="background-color: #ffffff;">
                     <div class="">
 
-                        <div id="">
-                            <div class="card mb-3p-3 mb-2 " id="card" style="max-width: 100%;">
-                                <div class="row no-gutters">
-                                    <div class="col-md-5">
-                                        <div class="profile-dt">
+
+
+
+
+                        <div class="card mb-3p-3 mb-2 " id="card" style="max-width: 100%;">
+                            <div class="row no-gutters">
+                                <div class="row-md-5">
+                                    <div></div>
+                                    <div class="row ">
+
+                                        <br>
+                                        <div class="img profile-dt">
+                                            <img id="avatar"
+                                                src="https://thumbor.forbes.com/thumbor/fit-in/416x416/filters%3Aformat%28jpg%29/https%3A%2F%2Fspecials-images.forbesimg.com%2Fimageserve%2F5ec593cc431fb70007482137%2F0x0.jpg%3Fbackground%3D000000%26cropX1%3D1321%26cropX2%3D3300%26cropY1%3D114%26cropY2%3D2093"
+                                                alt="">
+                                        </div>
+
+                                        <div class="text tetx-profile">
+                                            <h5 id="name"></h5><br>
+                                            <span><b id="email"></b></span><br>
+
+                                            <span><b id="phone"></b></span>
 
                                             <br>
-                                            <div class="img">
-                                                <img id="avatar"
-                                                    src="https://thumbor.forbes.com/thumbor/fit-in/416x416/filters%3Aformat%28jpg%29/https%3A%2F%2Fspecials-images.forbesimg.com%2Fimageserve%2F5ec593cc431fb70007482137%2F0x0.jpg%3Fbackground%3D000000%26cropX1%3D1321%26cropX2%3D3300%26cropY1%3D114%26cropY2%3D2093"
-                                                    alt="" width="30%" height="30%">
-                                            </div>
-                                            <div class="text">
-                                                <span id="full_nane">Cristiano Ronaldo</span>
-                                            </div><br>
-                                            <div class="text">
-                                                <i class='bx bx-mail-send'></i><span id="full_name"> email@gmail.com</span><br>
-                                                <i class='bx bx-phone' undefined></i><span> 09xxxxxxxx</span>
-                                            </div>
-                                        </div><br>
-                                    </div>
-                                 
-                                </div>
-                            </div>
+                                            <hr>
+                                            <span id="detail"></span>
 
+                                        </div>
+                                    </div><br>
+                                </div>
+
+                            </div>
                         </div>
 
 
@@ -161,7 +165,9 @@
                                             <div class="indicator"></div>
                                             <div class="modal-header">
                                                 <h5 class="modal-title" id="exampleModalLabel"></h5>
-                                                <span aria-hidden="true">&times;</span>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
                                                 </button>
                                             </div>
                                             <div class="modal-body">
@@ -173,7 +179,7 @@
                                                             <div>
                                                                 <img src="" alt="" id="image" width="100">
 
-                                                                <input type="file" id="file">
+                                                                <input type="file" id="file_image">
                                                                 <progress id="progress_bar" value="0"
                                                                     max="100"></progress>
                                                                 <script src="app.js" type="text/javascript"></script>
@@ -206,12 +212,12 @@
                                                                     ของตกแต่ง
                                                                 </label>
                                                             </div><br>
-                                                            <input class="form-control" type="text"
+                                                            <input class="form-control" type="text" id="cont_name"
                                                                 placeholder="หัวข้อ"><br>
 
                                                             <div class="form-group">
 
-                                                                <textarea class="form-control" rows="5" id="comment"
+                                                                <textarea class="form-control" rows="5" id="cont_detail"
                                                                     placeholder="รายละเอียด"></textarea>
                                                             </div>
                                                         </div>
@@ -224,12 +230,19 @@
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary btn-sm"
                                                     data-dismiss="modal">Cancel</button>
-                                                <span class="btn btn-info btn-sm" disabled>Upload</span>
+                                                <span class="btn btn-info btn-warning" data-dismiss="modal" onclick="createArticlePost()">Upload</span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+
+
+
+
+
+
+
 
 
 
@@ -282,7 +295,7 @@
                             </div>
                         </div>
 
-                        
+
 
 
                     </div>
@@ -293,25 +306,28 @@
 
 
 
+
+
+
     </section>
-    <script>
-        let arrow = document.querySelectorAll(".arrow");
-        for (var i = 0; i < arrow.length; i++) {
-            arrow[i].addEventListener("click", (e) => {
-                let arrowParent = e.target.parentElement.parentElement;//selecting main parent of arrow
-                arrowParent.classList.toggle("showMenu");
-            });
-        }
-        let sidebar = document.querySelector(".sidebar");
-        let sidebarBtn = document.querySelector(".bx-menu");
-        console.log(sidebarBtn);
-        sidebarBtn.addEventListener("click", () => {
-            sidebar.classList.toggle("close");
-        });
-    </script>
-    <script src="public/login_register.js"></script>
+    <script src="../js/sidebar.js"> </script>
+   
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+  https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <!-- Our script must be loaded after firebase references -->
+    <script src="../js/firebase_connect.js"></script>
+    <script src="../js/showdata.js"></script>
+    
+    <script src="../js/post.js"></script>
+
 </body>
 
-<script src="login_register.js"></script>
+
 
 </html>
