@@ -1,3 +1,5 @@
+const getVideo_name = document.querySelector('#vdo_name');
+const getVideo_detail = document.querySelector('#vdo_detail');
 
 
 
@@ -16,6 +18,9 @@ function createVdoPost() {
       vdo_detail: document.getElementById('vdo_detail').value,
 
    });
+
+   selectShow()
+   
 
 }
 
@@ -36,7 +41,7 @@ function createArticlePost() {
    });
 
 
-
+   selectShow()
 
 }
 
@@ -58,7 +63,7 @@ function createProductPost() {
       shop_link: document.getElementById('shop_link').value,
    });
 
-
+   selectShow()
 
 
 }
@@ -74,49 +79,90 @@ function createCommentPost() {
       comment_detail: document.getElementById('comment_detail').value,
 
    });
-
+   selectShow()
 }
 
 
 
 
 
+function selectShow(){
+
+
+firebase.auth().onAuthStateChanged(function (user) {
+   if (user) {
+
+
+      db.collection('videos').get().then((snapshot) => {
+         snapshot.forEach(doc => {
+            show(doc)
+         });
+
+      })
+
+      db.collection('articles').get().then((snapshot) => {
+         snapshot.forEach(doc => {
+            show(doc)
+         });
+
+      })
+
+      db.collection('products').get().then((snapshot) => {
+         snapshot.forEach(doc => {
+            show(doc)
+         });
+
+      })
+
+      db.collection('comments').get().then((snapshot) => {
+         snapshot.forEach(doc => {
+            show(doc)
+         });
+
+      })
+
+      function show(doc) {
+
+
+         const videos = localStorage.getItem('videos');
+         // const email = localStorage.getItem('articles');
+         // const email = localStorage.getItem('products');
+         // const email = localStorage.getItem('comments');
+         if (videos == doc.data().email) {
+
+            console.log(doc.data().vdo_name);
+            console.log(doc.data().vdo_detail);
+            getVideo_name.innerHTML = doc.data().vdo_name;
+            getVideo_detail.innerHTML = doc.data().vdo_detail;
+
+         // } else if (email == doc.data().articles){
+         //    console.log(doc.data().vdo_name);
+         //    console.log(doc.data().vdo_detail);
+         //    getVideo_name.innerHTML = doc.data().vdo_name;
+         //    getVideo_detail.innerHTML = doc.data().vdo_detail;
+         
+         // } else if (email == doc.data().products){
+         //    console.log(doc.data().vdo_name);
+         //    console.log(doc.data().vdo_detail);
+         //    getVideo_name.innerHTML = doc.data().vdo_name;
+         //    getVideo_detail.innerHTML = doc.data().vdo_detail;
+         
+         // } else if (email == doc.data().comments){
+         //    console.log(doc.data().vdo_name);
+         //    console.log(doc.data().vdo_detail);
+         //    getVideo_name.innerHTML = doc.data().vdo_name;
+         //    getVideo_detail.innerHTML = doc.data().vdo_detail;
+         
+         }else {
+            console.log("faill");
+         }
 
 
 
+      }
 
-// firebase.auth().onAuthStateChanged(function (user) {
-//    if (user) {
-
-
-//        db.collection('users').get().then((snapshot) => {
-//            snapshot.forEach(doc => {
-//                showdata(doc)
-//            });
-
-//        })
-
-
-
-
-//        function showdata(doc) {
-
-
-//            const email = localStorage.getItem('email');
-//            if (email == doc.data().email) {
-
-
-
-//            } else {
-//                console.log("faile");
-//            }
-
-
-
-//        }
-
-//    } else {
-
-//    }
-// }
-// )
+   } else {
+      console.log("faile");
+   }
+}
+)}

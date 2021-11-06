@@ -21,16 +21,7 @@ firebase.auth().onAuthStateChanged(function (user) {
 
         })
 
-        // getForm.addEventListener('submit', (e) => {
-        //     e.preventDefault();
-        //     db.collection('users').add({
-        //         name: getForm.name.value,
-        //         email: getForm.email.value,
-        //         phone: getForm.phone.value,
-        //         detail: getForm.detail.value
-        //     });
-
-        // });
+     
 
 
         function showdata(doc) {
@@ -61,3 +52,43 @@ firebase.auth().onAuthStateChanged(function (user) {
 
 
 
+firebase.auth().onAuthStateChanged(function (user) {
+   if (user) {
+
+
+      db.collection('videos').get().then((snapshot) => {
+         snapshot.forEach(doc => {
+            showdata(doc)
+         });
+
+      })
+
+
+
+
+      function showdata(doc) {
+
+
+         const email = localStorage.getItem('email');
+         if (email == doc.data().email) {
+
+            console.log(doc.data().vdo_name);
+            console.log(doc.data().vdo_detail);
+            getVideo_name.innerHTML = doc.data().vdo_name;
+            getVideo_detail.innerHTML = doc.data().vdo_detail;
+
+        
+
+         } else {
+            console.log("faile");
+         }
+
+
+
+      }
+
+   } else {
+
+   }
+}
+)
