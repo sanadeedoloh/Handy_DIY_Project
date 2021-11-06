@@ -18,7 +18,7 @@
 
 
 
-
+</head>
 <body>
     <div class="sidebar close">
         <div class="logo-details">
@@ -173,18 +173,29 @@
                                             <div class="modal-body">
                                                 <div class="media mb-3">
 
-
+                                                    
                                                     <form class="md-form">
                                                         <div class="file-field">
+<!--                                                             
                                                             <div>
-                                                                <img src="" alt="" id="image" width="100">
+                                                                <style>
+                                                                    img{
+                                                                        height: 200px;
+                                                                        width: 200px;
+                                                                        border: 1px black
+                                                                    }
+    
+                                                            </style>
 
-                                                                <input type="file" id="file_image">
-                                                                <progress id="progress_bar" value="0"
-                                                                    max="100"></progress>
-                                                                <script src="app.js" type="text/javascript"></script>
+                                                                <label>Image Name</label><input type="text" id="nameimage"><label id="extlab"></label><br><br>
+                                                                <img id="myimage" > <label id="upprogress"></label><br><br>
 
-                                                            </div><br>
+                                                                <button id="selbtn">Select Image </button>
+                                                                <button id="upbtn">Upload Image </button>
+                                                               
+                                                        
+
+                                                            </div><br> -->
 
 
 
@@ -311,20 +322,84 @@
 
     </section>
     <script src="../js/sidebar.js"> </script>
-   
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-
-
-    <!-- TODO: Add SDKs for Firebase products that you want to use
-  https://firebase.google.com/docs/web/setup#available-libraries -->
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
-    <!-- Our script must be loaded after firebase references -->
     <script src="../js/firebase_connect.js"></script>
     <script src="../js/showdata.js"></script>
-    
     <script src="../js/post.js"></script>
+    
+    <!-- <script type="module">
+
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.3.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.3.0/firebase-analytics.js";
+
+        const firebaseConfig = {
+          apiKey: "AIzaSyBBy_jEVq6DkJ7Sa6sBiALGA1qEyLYL_fQ",
+          authDomain: "diyworkshop-c67ec.firebaseapp.com",
+          databaseURL: "https://diyworkshop-c67ec-default-rtdb.asia-southeast1.firebasedatabase.app",
+          projectId: "diyworkshop-c67ec",
+          storageBucket: "diyworkshop-c67ec.appspot.com",
+          messagingSenderId: "607537332451",
+          appId: "1:607537332451:web:0b8d073bfffac7f30f85d6",
+          measurementId: "G-T8XWSP705V"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+
+        import {getstorage ,ref as sRef, uploadBytesResumabe, getDownloadURL}
+        from "https://www.gstatic.com/firebasejs/9.3.0/firebase-storage.js"
+
+// ตั้งค่าการเพื่มไฟล์ภาพ
+
+        var files = []
+        var reader = new FileReader();
+
+        var nameimage = document.getElementById("nameimage")
+        var extlab = document.getElementById("extlab")
+        var myimage = document.getElementById("myimage")
+        var proglab = document.getElementById("upprogress")
+        var Selbtn = document.getElementById("selbtn")
+        var Upbtn = document.getElementById("upbtn")
+
+        var input = document.getElementById("input")
+        input.type ='file';
+
+        input.onchange = e =>{
+            files = e.target.files;
+
+            var extention = getFileExt(files[0]);
+            var name = getFileName(files[0]);
+
+            nameimage.value = name;
+            extlab.innerHTML = extension;
+
+            reader.readAsDataURL(files[0]);
+
+        }
+            reader.onload = function(){
+            myimage.src = reader.result
+            }
+// ฟังชั่นเลือกรูป และเปลี่ยนนามสกุุลไฟล์
+            
+
+            Selbtn.onclick = function(){
+                input.click();
+            }
+            function GetFileExt(file){
+                var temp = file.name.split('.');
+                var ext = temp.slice((temp.length-1), (temp.length));
+                return '.' + ext[0]
+            }
+            function GetFileName(file){
+                var temp = file.name.split('.');
+                var fname = temp.slice(0,-1).join('.');
+                return fname;
+            }
+      </script> -->
 
 </body>
 
