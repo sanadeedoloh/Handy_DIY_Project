@@ -17,14 +17,20 @@
             }
 
     </style>
-
+        <h1>Port</h1>
         <label>Image Name</label><input type="text" id="nameimage"><label id="extlab"></label><br><br>
         <img id="myimage" > <label id="upprogress"></label><br><br>
 
         <button id="selbtn">Select Image </button>
-        <button id="upbtn">Upload Image </button><br>
+        <button id="upbtn">Upload Image</button>
+        <br><br>
+        <label>Tital</label> <input id="tital" type="text"> <br><br>
+        <label>Details</label> <input id= "details"type="text">
+        <br><br>
+        <button id="inport">Upload</button>
+        <button id="exitbtn">Cancel</button>
 
-  <script type="module">
+        <script type="module">
 
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.3.0/firebase-app.js";
 
@@ -62,6 +68,11 @@
         var files = [];
         var reader = new FileReader();
 
+
+        var title = document.getElementById('title')
+        var details = document.getElementById('details')
+
+        //ตัวแปรรูปภาพ
         var nameimage = document.getElementById('nameimage')
         var extlab = document.getElementById('extlab')
         var myimage = document.getElementById('myimage')
@@ -105,7 +116,6 @@
                 return fname;
             }
 // โหลดรูปภาพ
-
             async function UploadProcess(){
                 var ImgToUpload = files[0];
 
@@ -133,53 +143,60 @@
                 },
                 ()=>{
                     getDownloadURL(UploadTask.snapshot.ref).then((downloadURL)=>{
-                        SaveURLtoRealtimeDB(downloadURL);
+                        SaveURLtoFirestore(downloadURL);
                     });
 
                 }
                 );
 //  ฟังชั่นของ firestorage databaes
-//                   async function SaveURLtoFirestore(){
- //                   var name = nameimage.value;
- //                   var ext = extlab.innerHTML;
+                   async function SaveURLtoFirestore(url){
+                   var name = nameimage.value;
+                   var ext = extlab.innerHTML;
 
- //                   var ref = doc(clouddb, "ImageLinks/"+name);
 
-   //                 await setDoc(ref,{
-   //                     imageName : (name+ext),
-   //                     imageURL: url,
-   //                 })
-  //              }
+                   var ref = doc(clouddb, "post/"+name);
+
+                    await setDoc(ref,{
+
+                        imageName : (name+ext),
+                        imageURL: url,
+
+                   })
+               }
             }
+
 //  ฟังชั่นของ realtime database
-            function SaveURLtoRealtimeDB(URL){
-            var name = nameimage.value;
-            var ext = extlab.innerHTML;
+//            function SaveURLtoRealtimeDB(URL){
+//            var name = nameimage.value;
+//            var ext = extlab.innerHTML;
 
-            set(ref(realdb, "ImagesLink/"+name),{
-                ImageName : (name+ext),
-                ImgURL: URL
-            });
-        }
-            function GetUrlfromRealtimeDB(){
-            var name = nameimage.value;
+//            set(ref(realdb, "ImagesLink/"+name),{
+//                ImageName : (name+ext),
+//                ImgURL: URL
+//            });
+//        }
+//            function GetUrlfromRealtimeDB(){
+//            var name = nameimage.value;
             
-            var dbRef =  ref(realdb);
+ //           var dbRef =  ref(realdb);
 
-            get(child(refdb, "ImagesLink/"+name)).then((snapshot)=>{
-                if(snapshot.exists()){
-                    myimage.scr = snapshot.val().ImgURL;
-                }
-            })
-        }
+ //           get(child(refdb, "ImagesLink/"+name)).then((snapshot)=>{
+ //               if(snapshot.exists()){
+ //                   myimage.scr = snapshot.val().ImgURL;
+  //              }
+ //           })
+ //       }
 // ฟังชัน ดักจับคัวอักษรแปลกๆ
             function ValidateName(){
                 var regex = /[\.#$\[\]]/
                 return !(regex.test(nameimage.value));
             }
 
+//  ฟังชั่นกดปุ่ม
+            inport.addEventListener("click",AddPort_AutoID)
           Upbtn.onclick = UploadProcess;
-          Downbtn.onclick = GetUrlfromRealtimeDB;
+
+//          Downbtn.onclick = GetUrlfromRealtimeDB;
       </script>
 
 </body>
