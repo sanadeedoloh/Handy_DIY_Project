@@ -68,10 +68,6 @@
         var files = [];
         var reader = new FileReader();
 
-
-        var title = document.getElementById('title')
-        var details = document.getElementById('details')
-
         //ตัวแปรรูปภาพ
         var nameimage = document.getElementById('nameimage')
         var extlab = document.getElementById('extlab')
@@ -100,7 +96,6 @@
             myimage.src = reader.result;
             }
 // ฟังชั่นเลือกรูป และเปลี่ยนนามสกุุลไฟล์
-            
 
             Selbtn.onclick = function(){
                 input.click();
@@ -164,7 +159,6 @@
                    })
                }
             }
-
 //  ฟังชั่นของ realtime database
 //            function SaveURLtoRealtimeDB(URL){
 //            var name = nameimage.value;
