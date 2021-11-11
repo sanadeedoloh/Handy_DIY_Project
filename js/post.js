@@ -1,5 +1,6 @@
-const getVideo_name = document.querySelector('#vdo_name');
-const getVideo_detail = document.querySelector('#vdo_detail');
+// const getVideo_name = document.querySelector('#vdo_name');
+// const getVideo_detail = document.querySelector('#vdo_detail');
+
 
 
 
@@ -29,14 +30,15 @@ function createArticlePost() {
 
    // // Get article
    file_image = document.getElementById('file_image').value;
-   cont_name = document.getElementById('cont_name').value;
-   cont_detail = document.getElementById('cont_detail').value;
+   artcle_name_name = document.getElementById('artcle_name').value;
+   artcle_name_detail = document.getElementById('artcle_detail').value;
 
 
    db.collection("articles").doc().set({
+      
       file_image: document.getElementById('file_image').value,
-      cont_name: document.getElementById('cont_name').value,
-      cont_detail: document.getElementById('cont_detail').value,
+      artcle_name_name: document.getElementById('artcle_name').value,
+      artcle_detail: document.getElementById('artcle_detail').value,
 
    });
 
