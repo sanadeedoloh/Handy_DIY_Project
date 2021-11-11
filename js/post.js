@@ -125,9 +125,7 @@ firebase.auth().onAuthStateChanged(function (user) {
 
 
          const videos = localStorage.getItem('videos');
-         // const email = localStorage.getItem('articles');
-         // const email = localStorage.getItem('products');
-         // const email = localStorage.getItem('comments');
+        
          if (videos == doc.data().email) {
 
             console.log(doc.data().vdo_name);
