@@ -17,10 +17,10 @@ firebase.auth().onAuthStateChanged(function (user) {
             console.log(getForm.name.value);
             console.log(getForm.phone.value);
             console.log(getForm.detail.value);
-            console.log(user.uid);
+            console.log(user.email);
 
 
-            db.collection('users').doc(user.uid).update({
+            db.collection('users').doc(user.email).update({
 
                 name: getForm.name.value,
                 phone: getForm.phone.value,

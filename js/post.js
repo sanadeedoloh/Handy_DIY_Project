@@ -1,15 +1,16 @@
-// const getVideo_name = document.querySelector('#vdo_name');
-// const getVideo_detail = document.querySelector('#vdo_detail');
 
 
 
+const email = localStorage.getItem('email');
 
+// create vdo
 function createVdoPost() {
 
    // Get vdo
    video = document.getElementById('video').value;
    vdo_name = document.getElementById('vdo_name').value;
    vdo_detail = document.getElementById('vdo_detail').value;
+  
 
 
 
@@ -17,36 +18,41 @@ function createVdoPost() {
       video: document.getElementById('video').value,
       vdo_name: document.getElementById('vdo_name').value,
       vdo_detail: document.getElementById('vdo_detail').value,
-
+      userId: email,
    });
+   console.log("create video post success");
 
-   selectShow()
-   
+
 
 }
 
 
-function createArticlePost() {
+// create article
+function createArticlePost(doc) {
 
    // // Get article
    file_image = document.getElementById('file_image').value;
-   artcle_name_name = document.getElementById('artcle_name').value;
-   artcle_name_detail = document.getElementById('artcle_detail').value;
-
+   article_name = document.getElementById('article_name').value;
+   article_detail = document.getElementById('article_detail').value;
+  
+  
+   
 
    db.collection("articles").doc().set({
-      
+      userId: email,
+      article_name: document.getElementById('article_name').value,
+      article_detail: document.getElementById('article_detail').value,
       file_image: document.getElementById('file_image').value,
-      artcle_name_name: document.getElementById('artcle_name').value,
-      artcle_detail: document.getElementById('artcle_detail').value,
-
    });
 
+   console.log("create video post success");
 
-   selectShow()
+   console.log(doc.id);
+   
+
 
 }
-
+// create product
 function createProductPost() {
 
    // // Get product
@@ -63,14 +69,15 @@ function createProductPost() {
       pd_detail: document.getElementById('pd_detail').value,
       facebook: document.getElementById('facebook').value,
       shop_link: document.getElementById('shop_link').value,
+      userId: email,
    });
 
-   selectShow()
+  
 
 
 }
 
-
+// create comment
 function createCommentPost() {
 
    // // Get comment
@@ -79,7 +86,7 @@ function createCommentPost() {
 
    db.collection("comments").doc().set({
       comment_detail: document.getElementById('comment_detail').value,
-
+      userId: email,
    });
    selectShow()
 }
@@ -88,81 +95,21 @@ function createCommentPost() {
 
 
 
-function selectShow(){
-
-
-firebase.auth().onAuthStateChanged(function (user) {
-   if (user) {
-
-
-      db.collection('videos').get().then((snapshot) => {
-         snapshot.forEach(doc => {
-            show(doc)
+async function getBlogByEmail(collection, email) {
+   try {
+      return await db
+         .collection(collection)
+         .doc(email)
+         .get()
+         .then((result) => {
+            if (result) {
+               console.log(result.data());
+               return result.data();
+            }
+            console.log("No  data");
+            return false;
          });
-
-      })
-
-      db.collection('articles').get().then((snapshot) => {
-         snapshot.forEach(doc => {
-            show(doc)
-         });
-
-      })
-
-      db.collection('products').get().then((snapshot) => {
-         snapshot.forEach(doc => {
-            show(doc)
-         });
-
-      })
-
-      db.collection('comments').get().then((snapshot) => {
-         snapshot.forEach(doc => {
-            show(doc)
-         });
-
-      })
-
-      function show(doc) {
-
-
-         const videos = localStorage.getItem('videos');
-        
-         if (videos == doc.data().email) {
-
-            console.log(doc.data().vdo_name);
-            console.log(doc.data().vdo_detail);
-            getVideo_name.innerHTML = doc.data().vdo_name;
-            getVideo_detail.innerHTML = doc.data().vdo_detail;
-
-         // } else if (email == doc.data().articles){
-         //    console.log(doc.data().vdo_name);
-         //    console.log(doc.data().vdo_detail);
-         //    getVideo_name.innerHTML = doc.data().vdo_name;
-         //    getVideo_detail.innerHTML = doc.data().vdo_detail;
-         
-         // } else if (email == doc.data().products){
-         //    console.log(doc.data().vdo_name);
-         //    console.log(doc.data().vdo_detail);
-         //    getVideo_name.innerHTML = doc.data().vdo_name;
-         //    getVideo_detail.innerHTML = doc.data().vdo_detail;
-         
-         // } else if (email == doc.data().comments){
-         //    console.log(doc.data().vdo_name);
-         //    console.log(doc.data().vdo_detail);
-         //    getVideo_name.innerHTML = doc.data().vdo_name;
-         //    getVideo_detail.innerHTML = doc.data().vdo_detail;
-         
-         }else {
-            console.log("faill");
-         }
-
-
-
-      }
-
-   } else {
-      console.log("faile");
+   } catch (error) {
+      console.log("Error readDataByUID : ", error);
    }
-}
-)}
+};

@@ -48,7 +48,7 @@ function register() {
 
   // Move on with Auth
   auth.createUserWithEmailAndPassword(email, password).then(cred => {
-    return db.collection('users').doc(cred.user.uid).set({
+    return db.collection('users').doc(email).set({
       email: document.getElementById('email').value,
       name: document.getElementById('full_name').value,
       phone: null,

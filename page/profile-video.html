@@ -99,7 +99,7 @@
         </div>
 
 
-
+       
 
 
 
@@ -110,7 +110,7 @@
                     <div class="">
 
 
-                        <div class="card mb-3p-3 mb-2 " id="card" style="max-width: 100%;">
+                        <div class="mb-3p-3 mb-2 boderline " id="card" style="max-width: 100%;">
                             <div class="row no-gutters">
                                 <div class="row-md-5">
                                     <div></div>
@@ -132,7 +132,7 @@
                                             <br>
                                             <hr>
                                             <span id="detail"></span>
-
+                                            
                                         </div>
                                     </div><br>
                                 </div>
@@ -230,7 +230,10 @@
                                                 <button type="button" class="btn btn-secondary btn-sm"
                                                     data-dismiss="modal">Cancel</button>
                                                 <button class="btn btn-info btn-warning" data-dismiss="modal"
-                                                    onclick="createVdoPost()">Upload</button>
+                                                    onclick="createVdoPost('videos',email)">Upload</button>
+                                                    
+                                                    <!-- <button class="btn btn-info btn-warning" data-dismiss="modal"
+                                                    onclick=" getBlogByEmail('videos','test')">Upload</button> -->
                                             </div>
                                         </div>
                                     </div>
@@ -259,7 +262,7 @@
                 </div>
                 <br>
                 <!-- glob -->
-                <div class="card-deck" id="blog-vdo">
+                <!-- <div class="card-deck" id="blog-vdo">
                     <div class="card" id="card">
                         <iframe src="https://www.youtube.com/embed/LHB5HYGR8d0" title="YouTube video player"
                             frameborder="0"
@@ -271,27 +274,41 @@
 
                         </div>
                     </div>
-                    <div class="card" id="card">
-                        <iframe src="https://www.youtube.com/embed/HP8Rqv6rCNI" title="YouTube video player"
-                            frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowfullscreen></iframe>
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                        </div>
-                    </div>
-                    <div class="card" id="card">
-                        <iframe src="https://www.youtube.com/embed/pq5CYbUBIf4" title="YouTube video player"
-                            frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowfullscreen></iframe>
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
+
+                </div> -->
+
+
+
+                <div class="row d-flex justify-content-center">
+                    <div class="col-md-10 col-lg-10">
+                        <div class="" style="background-color: #ffffff;">
+                            <div class="">
+
+                                <div class="card-columns" style="padding: 1%;">
+
+                                    <div class="card" id="card">
+                                        <img class="card-img-top"
+                                            src="https://static.trueplookpanya.com/cmsblog/3305/75305/thumb_file.jpg"
+                                            alt="Card image cap">
+                                            <div class="card-body">
+                                                <h5 class="card-title" id="getvdo_name"></h5>
+                                                <span id="getvdo_detail"></span>
+                    
+                                            </div>
+                                    </div>
+
+
+                                </div>
+
+
+                            </div>
+
                         </div>
                     </div>
                 </div>
 
 
+                
 
 
             </div>
