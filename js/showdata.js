@@ -5,8 +5,6 @@ const getForm = document.querySelector('#form');
 const getPhone = document.querySelector('#phone');
 const getDetail = document.querySelector('#detail');
 
-const getVideo_name = document.querySelector('#getvdo_name');
-const getVideo_detail = document.querySelector('#getvdo_detail');
 
 const getArticle_name = document.querySelector('#getarticle_name');
 const getArticle_detail = document.querySelector('#getarticle_detail');
@@ -47,8 +45,14 @@ firebase.auth().onAuthStateChanged(function (user) {
         })
 
 
+<<<<<<< HEAD
 
         function showData(doc){
+=======
+            } else {
+                console.log("faile");
+            }
+>>>>>>> b66d968ceff666040aa0442deb9acfc9b54fcbdb
 
             getArticle_name.innerHTML = doc.data().article_name;
             getArticle_detail.innerHTML = doc.data().article_detail;
@@ -65,3 +69,45 @@ firebase.auth().onAuthStateChanged(function (user) {
 }
 )
 
+
+
+firebase.auth().onAuthStateChanged(function (user) {
+   if (user) {
+
+
+      db.collection('videos').get().then((snapshot) => {
+         snapshot.forEach(doc => {
+            showdata(doc)
+         });
+
+      })
+
+
+
+
+      function showdata(doc) {
+
+
+         const email = localStorage.getItem('email');
+         if (email == doc.data().email) {
+
+            console.log(doc.data().vdo_name);
+            console.log(doc.data().vdo_detail);
+            getVideo_name.innerHTML = doc.data().vdo_name;
+            getVideo_detail.innerHTML = doc.data().vdo_detail;
+
+        
+
+         } else {
+            console.log("faile");
+         }
+
+
+
+      }
+
+   } else {
+
+   }
+}
+)

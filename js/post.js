@@ -1,4 +1,6 @@
 
+const getVideo_name = document.querySelector('#vdo_name');
+const getVideo_detail = document.querySelector('#vdo_detail');
 
 
 const email = localStorage.getItem('email');
@@ -32,6 +34,7 @@ function createArticlePost(doc) {
 
    // // Get article
    file_image = document.getElementById('file_image').value;
+<<<<<<< HEAD
    article_name = document.getElementById('article_name').value;
    article_detail = document.getElementById('article_detail').value;
   
@@ -43,6 +46,17 @@ function createArticlePost(doc) {
       article_name: document.getElementById('article_name').value,
       article_detail: document.getElementById('article_detail').value,
       file_image: document.getElementById('file_image').value,
+=======
+   cont_name = document.getElementById('cont_name').value;
+   cont_detail = document.getElementById('cont_detail').value;
+
+
+   db.collection("articles").doc().set({
+      file_image: document.getElementById('file_image').value,
+      cont_name: document.getElementById('cont_name').value,
+      cont_detail: document.getElementById('cont_detail').value,
+
+>>>>>>> b66d968ceff666040aa0442deb9acfc9b54fcbdb
    });
 
    console.log("create video post success");
