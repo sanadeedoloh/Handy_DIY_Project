@@ -1,68 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
-         
-   
-        <style>
-            img{
-                height: 200px;
-                width: 200px;
-                border: 1px black
-            }
 
+
+    <style>
+        img {
+            height: 200px;
+            width: 200px;
+            border: 1px black
+        }
     </style>
-        <h1>Port</h1>
-        <label>Image Name</label><input type="text" id="nameimage"><label id="extlab"></label><br><br>
-        <img id="myimage" > <label id="upprogress"></label><br><br>
+    <h1>Port</h1>
+    <label>Image Name</label><input type="text" id="nameimage"><label id="extlab"></label><br><br>
+    <img id="myimage"> <label id="upprogress"></label><br><br>
 
-        <button id="selbtn">Select Image </button>
-        <button id="upbtn">Upload Image</button>
-        <br><br>
-        <label>Tital</label> <input id="tital" type="text"> <br><br>
-        <label>Details</label> <input id= "details"type="text">
-        <br><br>
-        <button id="inport">Upload</button>
-        <button id="exitbtn">Cancel</button>
+    <button id="selbtn">Select Image </button>
+    <button id="upbtn">Upload Image</button>
+    <br><br>
+    <label>Tital</label> <input id="tital" type="text"> <br><br>
+    <label>Details</label> <input id="details" type="text">
+    <br><br>
+    <button id="inport">Upload</button>
+    <button id="exitbtn">Cancel</button>
 
-        <script type="module">
+    <script type="module">
 
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.3.0/firebase-app.js";
 
         const firebaseConfig = {
-          apiKey: "AIzaSyBBy_jEVq6DkJ7Sa6sBiALGA1qEyLYL_fQ",
-          authDomain: "diyworkshop-c67ec.firebaseapp.com",
-          databaseURL: "https://diyworkshop-c67ec-default-rtdb.asia-southeast1.firebasedatabase.app",
-          projectId: "diyworkshop-c67ec",
-          storageBucket: "diyworkshop-c67ec.appspot.com",
-          messagingSenderId: "607537332451",
-          appId: "1:607537332451:web:0b8d073bfffac7f30f85d6",
-          measurementId: "G-T8XWSP705V"
+            apiKey: "AIzaSyCjw9hEux7cBFUaTM5-V2fsCmjPbpmj9yo",
+            authDomain: "diyproject-93b1f.firebaseapp.com",
+            databaseURL: "https://diyproject-93b1f-default-rtdb.firebaseio.com",
+            projectId: "diyproject-93b1f",
+            storageBucket: "diyproject-93b1f.appspot.com",
+            messagingSenderId: "25915915585",
+            appId: "1:25915915585:web:89f1e518c905db9158f5c0",
+            measurementId: "G-XRGSS0L8WP"
         };
-      
+
         // Initialize Firebase
         const app = initializeApp(firebaseConfig);
 
         // firebase-storage
-        import {getStorage ,ref as sRef, uploadBytesResumable, getDownloadURL}
-        from "https://www.gstatic.com/firebasejs/9.3.0/firebase-storage.js"
+        import { getStorage, ref as sRef, uploadBytesResumable, getDownloadURL }
+            from "https://www.gstatic.com/firebasejs/9.3.0/firebase-storage.js"
 
-       // firebase-firestore
-        import {getFirestore,doc, getDoc,setDoc, collection,addDoc}
-        from "https://www.gstatic.com/firebasejs/9.3.0/firebase-firestore.js"
+        // firebase-firestore
+        import { getFirestore, doc, getDoc, setDoc, collection, addDoc }
+            from "https://www.gstatic.com/firebasejs/9.3.0/firebase-firestore.js"
         const clouddb = getFirestore();
-    
+
         // firebase-realtime databaes
-        import {getDatabase,ref, set,child, get, update, remove}
-        from "https://www.gstatic.com/firebasejs/9.3.0/firebase-database.js"
+        import { getDatabase, ref, set, child, get, update, remove }
+            from "https://www.gstatic.com/firebasejs/9.3.0/firebase-database.js"
         const realdb = getDatabase();
-        
-        
+
+
         // ตั้งค่าการเพื่มไฟล์ภาพ
 
         var files = [];
@@ -78,9 +79,9 @@
         var Downbtn = document.getElementById('down')
 
         var input = document.createElement('input')
-        input.type ='file';
+        input.type = 'file';
 
-        input.onchange = e =>{
+        input.onchange = e => {
             files = e.target.files;
 
             var extention = GetFileExt(files[0]);
@@ -92,31 +93,40 @@
             reader.readAsDataURL(files[0]);
 
         }
-            reader.onload = function(){
+        reader.onload = function () {
             myimage.src = reader.result;
-            }
-// ฟังชั่นเลือกรูป และเปลี่ยนนามสกุุลไฟล์
+        }
+        // ฟังชั่นเลือกรูป และเปลี่ยนนามสกุุลไฟล์
 
-            Selbtn.onclick = function(){
-                input.click();
+        Selbtn.onclick = function () {
+            input.click();
+        }
+        function GetFileExt(file) {
+            var temp = file.name.split('.');
+            var ext = temp.slice((temp.length - 1), (temp.length));
+            return '.' + ext[0]
+        }
+        function GetFileName(file) {
+            var temp = file.name.split('.');
+            var fname = temp.slice(0, -1).join('.');
+            return fname;
+        }
+        // โหลดรูปภาพ
+        async function UploadProcess() {
+            var ImgToUpload = files[0];
+
+            var ImgName = nameimage.value + extlab.innerHTML;
+
+            if (!ValidateName()) {
+                alert('ชื่อไฟล์ไม่สามารถใช้ " . "," # "," $ "," [", or "] " ');
+                return;
             }
-            function GetFileExt(file){
-                var temp = file.name.split('.');
-                var ext = temp.slice((temp.length-1), (temp.length));
-                return '.' + ext[0]
+            const metaData = {
+                contentType: ImgToUpload.type
             }
-            function GetFileName(file){
-                var temp = file.name.split('.');
-                var fname = temp.slice(0,-1).join('.');
-                return fname;
-            }
-<<<<<<< HEAD
             const storage = getStorage();
 
             const storageRef = sRef(storage, "Images/" + ImgName);
-// โหลดรูปภาพ
-            async function UploadProcess(){
-                var ImgToUpload = files[0];
 
             const UploadTask = uploadBytesResumable(storageRef, ImgToUpload, metaData);
 
@@ -129,97 +139,59 @@
                 },
                 () => {
                     getDownloadURL(UploadTask.snapshot.ref).then((downloadURL) => {
-                        SaveURLtoRealtimeDB(downloadURL);
-                    });
-=======
-// โหลดรูปภาพ
-            async function UploadProcess(){
-                var ImgToUpload = files[0];
-
-                var ImgName= nameimage.value + extlab.innerHTML;
->>>>>>> b66d968ceff666040aa0442deb9acfc9b54fcbdb
-
-                if (!ValidateName()){
-                    alert('ชื่อไฟล์ไม่สามารถใช้ " . "," # "," $ "," [", or "] " ');
-                    return;
-                }
-                const metaData = {
-                    contentType: ImgToUpload.type
-                }
-                const storage = getStorage();
-                
-                const storageRef = sRef(storage, "Images/"+ImgName);
-            
-                const UploadTask = uploadBytesResumable(storageRef, ImgToUpload, metaData);
-
-<<<<<<< HEAD
-        Upbtn.onclick = UploadProcess;
-        Downbtn.onclick = GetUrlfromRealtimeDB;
-    </script>
-=======
-                UploadTask.on('state-changed', (snapshot)=>{
-                    var progess = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                    proglab.innerHTML = "Upload "+ progess + "%";
-                },
-                (error) =>{
-                    alert("Error : ไม่สามารถอัปโหลดรูปภาพได้");
-                },
->>>>>>> b66d968ceff666040aa0442deb9acfc9b54fcbdb
-                ()=>{
-                    getDownloadURL(UploadTask.snapshot.ref).then((downloadURL)=>{
                         SaveURLtoFirestore(downloadURL);
                     });
 
                 }
-                );
-//  ฟังชั่นของ firestorage databaes
-                   async function SaveURLtoFirestore(url){
-                   var name = nameimage.value;
-                   var ext = extlab.innerHTML;
+            );
+            //  ฟังชั่นของ firestorage databaes
+            async function SaveURLtoFirestore(url) {
+                var name = nameimage.value;
+                var ext = extlab.innerHTML;
 
 
-                   var ref = doc(clouddb, "post/"+name);
+                var ref = doc(clouddb, "articles/" + name);
 
-                    await setDoc(ref,{
+                await setDoc(ref, {
 
-                        imageName : (name+ext),
-                        imageURL: url,
+                    imageName: (name + ext),
+                    imageURL: url,
 
-                   })
-               }
+                })
             }
-//  ฟังชั่นของ realtime database
-//            function SaveURLtoRealtimeDB(URL){
-//            var name = nameimage.value;
-//            var ext = extlab.innerHTML;
+        }
+        //  ฟังชั่นของ realtime database
+        //            function SaveURLtoRealtimeDB(URL){
+        //            var name = nameimage.value;
+        //            var ext = extlab.innerHTML;
 
-//            set(ref(realdb, "ImagesLink/"+name),{
-//                ImageName : (name+ext),
-//                ImgURL: URL
-//            });
-//        }
-//            function GetUrlfromRealtimeDB(){
-//            var name = nameimage.value;
-            
- //           var dbRef =  ref(realdb);
+        //            set(ref(realdb, "ImagesLink/"+name),{
+        //                ImageName : (name+ext),
+        //                ImgURL: URL
+        //            });
+        //        }
+        //            function GetUrlfromRealtimeDB(){
+        //            var name = nameimage.value;
 
- //           get(child(refdb, "ImagesLink/"+name)).then((snapshot)=>{
- //               if(snapshot.exists()){
- //                   myimage.scr = snapshot.val().ImgURL;
-  //              }
- //           })
- //       }
-// ฟังชัน ดักจับคัวอักษรแปลกๆ
-            function ValidateName(){
-                var regex = /[\.#$\[\]]/
-                return !(regex.test(nameimage.value));
-            }
+        //           var dbRef =  ref(realdb);
 
-//  ฟังชั่นกดปุ่ม
-          Upbtn.onclick = UploadProcess;
+        //           get(child(refdb, "ImagesLink/"+name)).then((snapshot)=>{
+        //               if(snapshot.exists()){
+        //                   myimage.scr = snapshot.val().ImgURL;
+        //              }
+        //           })
+        //       }
+        // ฟังชัน ดักจับคัวอักษรแปลกๆ
+        function ValidateName() {
+            var regex = /[\.#$\[\]]/
+            return !(regex.test(nameimage.value));
+        }
+
+        //  ฟังชั่นกดปุ่ม
+        Upbtn.onclick = UploadProcess;
 
 //          Downbtn.onclick = GetUrlfromRealtimeDB;
-      </script>
+    </script>
 
 </body>
 

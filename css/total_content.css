@@ -205,3 +205,9 @@ p {
     border: 1px solid #ffbb00;
    
 }
+
+.Bimg {
+    height: 200px;
+    width: 200px;
+    border: 1px black
+}

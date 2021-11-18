@@ -45,14 +45,8 @@ firebase.auth().onAuthStateChanged(function (user) {
         })
 
 
-<<<<<<< HEAD
 
         function showData(doc){
-=======
-            } else {
-                console.log("faile");
-            }
->>>>>>> b66d968ceff666040aa0442deb9acfc9b54fcbdb
 
             getArticle_name.innerHTML = doc.data().article_name;
             getArticle_detail.innerHTML = doc.data().article_detail;
@@ -71,43 +65,43 @@ firebase.auth().onAuthStateChanged(function (user) {
 
 
 
-firebase.auth().onAuthStateChanged(function (user) {
-   if (user) {
+// firebase.auth().onAuthStateChanged(function (user) {
+//    if (user) {
 
 
-      db.collection('videos').get().then((snapshot) => {
-         snapshot.forEach(doc => {
-            showdata(doc)
-         });
+//       db.collection('videos').get().then((snapshot) => {
+//          snapshot.forEach(doc => {
+//             showdata(doc)
+//          });
 
-      })
-
-
+//       })
 
 
-      function showdata(doc) {
 
 
-         const email = localStorage.getItem('email');
-         if (email == doc.data().email) {
+//       function showdata(doc) {
 
-            console.log(doc.data().vdo_name);
-            console.log(doc.data().vdo_detail);
-            getVideo_name.innerHTML = doc.data().vdo_name;
-            getVideo_detail.innerHTML = doc.data().vdo_detail;
+
+//          const email = localStorage.getItem('email');
+//          if (email == doc.data().email) {
+
+//             console.log(doc.data().vdo_name);
+//             console.log(doc.data().vdo_detail);
+//             getVideo_name.innerHTML = doc.data().vdo_name;
+//             getVideo_detail.innerHTML = doc.data().vdo_detail;
 
         
 
-         } else {
-            console.log("faile");
-         }
+//          } else {
+//             console.log("faile");
+//          }
 
 
 
-      }
+//       }
 
-   } else {
+//    } else {
 
-   }
-}
-)
+//    }
+// }
+// )

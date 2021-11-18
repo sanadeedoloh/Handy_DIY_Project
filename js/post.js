@@ -12,7 +12,7 @@ function createVdoPost() {
    video = document.getElementById('video').value;
    vdo_name = document.getElementById('vdo_name').value;
    vdo_detail = document.getElementById('vdo_detail').value;
-  
+
 
 
 
@@ -30,42 +30,25 @@ function createVdoPost() {
 
 
 // create article
-function createArticlePost(doc) {
+function createArticlePost() {
 
    // // Get article
-   file_image = document.getElementById('file_image').value;
-<<<<<<< HEAD
+   
    article_name = document.getElementById('article_name').value;
    article_detail = document.getElementById('article_detail').value;
-  
-  
+
+
+   UploadProcess();
+   console.log("create article post success");
+
+
    
-
-   db.collection("articles").doc().set({
-      userId: email,
-      article_name: document.getElementById('article_name').value,
-      article_detail: document.getElementById('article_detail').value,
-      file_image: document.getElementById('file_image').value,
-=======
-   cont_name = document.getElementById('cont_name').value;
-   cont_detail = document.getElementById('cont_detail').value;
-
-
-   db.collection("articles").doc().set({
-      file_image: document.getElementById('file_image').value,
-      cont_name: document.getElementById('cont_name').value,
-      cont_detail: document.getElementById('cont_detail').value,
-
->>>>>>> b66d968ceff666040aa0442deb9acfc9b54fcbdb
-   });
-
-   console.log("create video post success");
-
-   console.log(doc.id);
-   
-
 
 }
+
+
+
+
 // create product
 function createProductPost() {
 
@@ -86,7 +69,7 @@ function createProductPost() {
       userId: email,
    });
 
-  
+
 
 
 }
@@ -102,7 +85,6 @@ function createCommentPost() {
       comment_detail: document.getElementById('comment_detail').value,
       userId: email,
    });
-   selectShow()
 }
 
 
@@ -127,3 +109,131 @@ async function getBlogByEmail(collection, email) {
       console.log("Error readDataByUID : ", error);
    }
 };
+
+
+
+
+
+
+
+
+var files = [];
+var reader = new FileReader();
+
+//ตัวแปรรูปภาพ
+var nameimage = document.getElementById('nameimage')
+var extlab = document.getElementById('extlab')
+var myimage = document.getElementById('myimage')
+var proglab = document.getElementById('upprogress')
+var Selbtn = document.getElementById('selbtn')
+var Upbtn = document.getElementById('upbtn')
+var Downbtn = document.getElementById('down')
+
+var input = document.createElement('input')
+input.type = 'file';
+
+input.onchange = e => {
+   files = e.target.files;
+
+   var extention = GetFileExt(files[0]);
+   var name = GetFileName(files[0]);
+
+   nameimage.value = name;
+   extlab.innerHTML = extention;
+
+   reader.readAsDataURL(files[0]);
+
+}
+reader.onload = function () {
+   myimage.src = reader.result;
+}
+// ฟังชั่นเลือกรูป และเปลี่ยนนามสกุุลไฟล์
+
+Selbtn.onclick = function () {
+   event.preventDefault();
+   input.click();
+}
+function GetFileExt(file) {
+   var temp = file.name.split('.');
+   var ext = temp.slice((temp.length - 1), (temp.length));
+   return '.' + ext[0]
+}
+function GetFileName(file) {
+   var temp = file.name.split('.');
+   var fname = temp.slice(0, -1).join('.');
+   return fname;
+}
+// โหลดรูปภาพ
+async function UploadProcess() {
+   var ImgToUpload = files[0];
+
+   var ImgName = nameimage.value + extlab.innerHTML;
+
+   if (!ValidateName()) {
+      alert('ชื่อไฟล์ไม่สามารถใช้ " . "," # "," $ "," [", or "] " ');
+      return;
+   }
+   const metaData = {
+      contentType: ImgToUpload.type
+   }
+
+
+   const storage = firebase.storage();
+
+   // const storageRef = sRef(storage, "Images/" + ImgName);
+   const storageRef = storage.ref();
+
+   // const UploadTask = uploadBytesResumable(storageRef, ImgToUpload, metaData);
+   const UploadTask = storageRef.child("Images/" + ImgName).put(metaData);
+
+   UploadTask.on('state-changed', (snapshot) => {
+      var progess = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+      proglab.innerHTML = "Upload " + progess + "%";
+   },
+      (error) => {
+         alert("Error : ไม่สามารถอัปโหลดรูปภาพได้");
+      },
+      () => {
+         UploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
+            SaveURLtoFirestore(downloadURL);
+         });
+
+      }
+   );
+   //  ฟังชั่นของ firestorage databaes
+   async function SaveURLtoFirestore(downloadURL) {
+      var name = nameimage.value;
+      var ext = extlab.innerHTML;
+
+
+      db.collection("articles").doc().set({
+
+         imageName: (name + ext),
+         imageURL: downloadURL,
+         userId: email,
+      article_name: document.getElementById('article_name').value,
+      article_detail: document.getElementById('article_detail').value,
+      
+
+      })
+   }
+}
+
+// ฟังชัน ดักจับคัวอักษรแปลกๆ
+function ValidateName() {
+   var regex = /[\.#$\[\]]/
+   return !(regex.test(nameimage.value));
+}
+
+//  ฟังชั่นกดปุ่ม
+// Upbtn.onclick = UploadProcess;
+
+//          Downbtn.onclick = GetUrlfromRealtimeDB;
+
+
+
+
+
+
+
+
