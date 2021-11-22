@@ -3,7 +3,7 @@ const getForm = document.querySelector('#form');
 
 
 
-
+const email = localStorage.getItem('email');
 
 
 firebase.auth().onAuthStateChanged(function (user) {
@@ -20,7 +20,7 @@ firebase.auth().onAuthStateChanged(function (user) {
             console.log(user.email);
 
 
-            db.collection('users').doc(user.email).update({
+            db.collection('users').doc(email).update({
 
                 name: getForm.name.value,
                 phone: getForm.phone.value,

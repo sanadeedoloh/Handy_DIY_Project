@@ -215,14 +215,6 @@ p {
 
 
 
-
-
-
-
-
-
-
-
 .wrimagecard{	
 	margin-top: 0;
     margin-bottom: 1.5rem;
@@ -259,4 +251,20 @@ a.wrimagecard:hover, .wrimagecard-topimage:hover {
     text-decoration: none;
     color: #525c65;
     transition: color 0.3s ease;
+}
+
+
+
+
+
+
+.radius1{
+    box-shadow: 5px 5px 8px 0px rgb(131, 131, 134) ,-3px -3px 8px 3px rgb(255, 255, 255);
+    
+    background-color: #e2e7ec;
+}
+.radius2{
+    
+    box-shadow: rgba(255, 14, 14, 0.1) -5px -5px 1px 0px;
+    color: #ff0000;
 }

@@ -5,23 +5,19 @@ const getVideo_detail = document.querySelector('#vdo_detail');
 
 const email = localStorage.getItem('email');
 
+var dataPost;
+
 // create vdo
 function createVdoPost() {
 
+   dataPost = "video";
    // Get vdo
-   video = document.getElementById('video').value;
+
    vdo_name = document.getElementById('vdo_name').value;
    vdo_detail = document.getElementById('vdo_detail').value;
 
 
-
-
-   db.collection("videos").doc().set({
-      video: document.getElementById('video').value,
-      vdo_name: document.getElementById('vdo_name').value,
-      vdo_detail: document.getElementById('vdo_detail').value,
-      userId: email,
-   });
+   UploadProcess(dataPost);
    console.log("create video post success");
 
 
@@ -32,17 +28,18 @@ function createVdoPost() {
 // create article
 function createArticlePost() {
 
+   dataPost = "image";
    // // Get article
-   
+
    article_name = document.getElementById('article_name').value;
    article_detail = document.getElementById('article_detail').value;
 
 
-   UploadProcess();
+   UploadProcess(dataPost);
    console.log("create article post success");
 
 
-   
+
 
 }
 
@@ -52,31 +49,25 @@ function createArticlePost() {
 // create product
 function createProductPost() {
 
+   dataPost = "product";
    // // Get product
-   pd_image = document.getElementById('pd_image').value;
+
    pd_name = document.getElementById('pd_name').value;
    pd_detail = document.getElementById('pd_detail').value;
    facebook = document.getElementById('facebook').value;
    shop_link = document.getElementById('shop_link').value;
 
 
-   db.collection("products").doc().set({
-      pd_image: document.getElementById('pd_image').value,
-      pd_name: document.getElementById('pd_name').value,
-      pd_detail: document.getElementById('pd_detail').value,
-      facebook: document.getElementById('facebook').value,
-      shop_link: document.getElementById('shop_link').value,
-      userId: email,
-   });
+   UploadProcess(dataPost);
 
-
+   console.log("create product post success");
 
 
 }
 
 // create comment
 function createCommentPost() {
-
+   dataPost = 4;
    // // Get comment
    comment_detail = document.getElementById('comment_detail').value;
 
@@ -129,6 +120,11 @@ var Selbtn = document.getElementById('selbtn')
 var Upbtn = document.getElementById('upbtn')
 var Downbtn = document.getElementById('down')
 
+const storage = firebase.storage();
+
+// const storageRef = sRef(storage, "Images/" + ImgName);
+const storageRef = storage.ref();
+
 var input = document.createElement('input')
 input.type = 'file';
 
@@ -163,8 +159,11 @@ function GetFileName(file) {
    var fname = temp.slice(0, -1).join('.');
    return fname;
 }
-// โหลดรูปภาพ
-async function UploadProcess() {
+
+
+
+// ฟังก์ชั่นโหลดรูปภาพ วิดีโอ สินค้า
+async function UploadProcess(imgVdo) {
    var ImgToUpload = files[0];
 
    var ImgName = nameimage.value + extlab.innerHTML;
@@ -177,47 +176,124 @@ async function UploadProcess() {
       contentType: ImgToUpload.type
    }
 
+   // เก็บข้อมูลรูปภาพ
+   if (dataPost == "image") {
 
-   const storage = firebase.storage();
+      // const UploadTask = uploadBytesResumable(storageRef, ImgToUpload, metaData);
+      const UploadTask = storageRef.child("Images/" + ImgName).put(metaData);
 
-   // const storageRef = sRef(storage, "Images/" + ImgName);
-   const storageRef = storage.ref();
-
-   // const UploadTask = uploadBytesResumable(storageRef, ImgToUpload, metaData);
-   const UploadTask = storageRef.child("Images/" + ImgName).put(metaData);
-
-   UploadTask.on('state-changed', (snapshot) => {
-      var progess = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-      proglab.innerHTML = "Upload " + progess + "%";
-   },
-      (error) => {
-         alert("Error : ไม่สามารถอัปโหลดรูปภาพได้");
+      UploadTask.on('state-changed', (snapshot) => {
+        
       },
-      () => {
-         UploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
-            SaveURLtoFirestore(downloadURL);
-         });
+         (error) => {
+            alert("Error : ไม่สามารถอัปโหลดรูปภาพได้");
+         },
+         () => {
+            UploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
+               SaveURLtoFirestore(downloadURL);
+            });
 
+         }
+      );
+      //  ฟังชั่นของ firestorage databaes
+      async function SaveURLtoFirestore(downloadURL) {
+         var name = nameimage.value;
+         var ext = extlab.innerHTML;
+
+
+         db.collection("articles").doc().set({
+
+            imageName: (name + ext),
+            imageURL: downloadURL,
+            userId: email,
+            article_name: document.getElementById('article_name').value,
+            article_detail: document.getElementById('article_detail').value,
+
+
+         })
       }
-   );
-   //  ฟังชั่นของ firestorage databaes
-   async function SaveURLtoFirestore(downloadURL) {
-      var name = nameimage.value;
-      var ext = extlab.innerHTML;
+   }
+
+   // เก็บข้อมูลวิดีโอ
+   if (dataPost == "video") {
+
+      const UploadTask = storageRef.child("Videos/" + ImgName).put(metaData);
+
+      UploadTask.on('state-changed', (snapshot) => {
+      },
+         (error) => {
+            alert("Error : ไม่สามารถอัปโหลดรูปภาพได้");
+         },
+         () => {
+            UploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
+               SaveURLtoFirestore(downloadURL);
+            });
+
+         }
+      );
+      //  ฟังชั่นของ firestorage databaes
+      async function SaveURLtoFirestore(downloadURL) {
+         var name = nameimage.value;
+         var ext = extlab.innerHTML;
 
 
-      db.collection("articles").doc().set({
+         db.collection("videos").doc().set({
 
-         imageName: (name + ext),
-         imageURL: downloadURL,
-         userId: email,
-      article_name: document.getElementById('article_name').value,
-      article_detail: document.getElementById('article_detail').value,
-      
+            videoName: (name + ext),
+            videoURL: downloadURL,
+            vdo_name: document.getElementById('vdo_name').value,
+            vdo_detail: document.getElementById('vdo_detail').value,
+            userId: email,
 
-      })
+
+         })
+      }
+   }
+
+   // เก็บข้อมูลสินค้า
+   if (dataPost == "product") {
+
+      const UploadTask = storageRef.child("Products/" + ImgName).put(metaData);
+
+      UploadTask.on('state-changed', (snapshot) => {
+      },
+         (error) => {
+            alert("Error : ไม่สามารถอัปโหลดรูปภาพได้");
+         },
+         () => {
+            UploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
+               SaveURLtoFirestore(downloadURL);
+            });
+
+         }
+      );
+      //  ฟังชั่นของ firestorage databaes
+      async function SaveURLtoFirestore(downloadURL) {
+         var name = nameimage.value;
+         var ext = extlab.innerHTML;
+
+
+         db.collection("products").doc().set({
+
+            productName: (name + ext),
+            productURL: downloadURL,
+            pd_name: document.getElementById('pd_name').value,
+            pd_detail: document.getElementById('pd_detail').value,
+            facebook: document.getElementById('facebook').value,
+            shop_link: document.getElementById('shop_link').value,
+            userId: email,
+
+
+         })
+      }
    }
 }
+
+
+
+
+
+
 
 // ฟังชัน ดักจับคัวอักษรแปลกๆ
 function ValidateName() {
