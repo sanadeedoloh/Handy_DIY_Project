@@ -163,7 +163,7 @@ function GetFileName(file) {
 
 
 // ฟังก์ชั่นโหลดรูปภาพ วิดีโอ สินค้า
-async function UploadProcess(imgVdo) {
+async function UploadProcess(dataPost) {
    var ImgToUpload = files[0];
 
    var ImgName = nameimage.value + extlab.innerHTML;
