@@ -6,8 +6,11 @@ const getPhone = document.querySelector('#phone');
 const getDetail = document.querySelector('#detail');
 
 
-const getArticle_name = document.querySelector('#getarticle_name');
-const getArticle_detail = document.querySelector('#getarticle_detail');
+const getArticle_name = document.querySelector('#article_name');
+const getArticle_detail = document.querySelector('#article_detail');
+
+const getArticle_name = document.querySelector('#vdo_name');
+const getArticle_detail = document.querySelector('#vdo_detail');
 
 
 
@@ -27,7 +30,7 @@ firebase.auth().onAuthStateChanged(function (user) {
 
        
 
-        db.collection('videos').doc(email).get().then((result) => {
+        db.collection('videos').doc().get().then((result) => {
 
             getVideo_name.innerHTML = result.data().vdo_name;
             getVideo_detail.innerHTML = result.data().vdo_detail;
