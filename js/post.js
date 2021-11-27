@@ -67,7 +67,7 @@ function createProductPost() {
 
 // create comment
 function createCommentPost() {
-   dataPost = 4;
+   dataPost = "comment";
    // // Get comment
    comment_detail = document.getElementById('comment_detail').value;
 
@@ -76,7 +76,14 @@ function createCommentPost() {
       comment_detail: document.getElementById('comment_detail').value,
       userId: email,
    });
+
+   UploadProcess(dataPost);
+
+   console.log("create product post success");
 }
+
+
+
 
 
 
@@ -181,12 +188,29 @@ async function UploadProcess(dataPost) {
 
       // const UploadTask = uploadBytesResumable(storageRef, ImgToUpload, metaData);
       const UploadTask = storageRef.child("Images/" + ImgName).put(metaData);
-
+      
       UploadTask.on('state-changed', (snapshot) => {
         
       },
          (error) => {
             alert("Error : ไม่สามารถอัปโหลดรูปภาพได้");
+            switch (error.code) {
+               case 'storage/unauthorized':
+                  console.log("Error : storage/unauthorized");
+                 // User doesn't have permission to access the object
+                 break;
+               case 'storage/canceled':
+                  console.log("Error : storage/canceled");
+                 // User canceled the upload
+                 break;
+       
+               // ...
+       
+               case 'storage/unknown':
+                  console.log("Error : storage/unknown");
+                 // Unknown error occurred, inspect error.serverResponse
+                 break;
+             }
          },
          () => {
             UploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
@@ -287,11 +311,14 @@ async function UploadProcess(dataPost) {
          })
       }
    }
+
+
+
+   
+
+
+    
 }
-
-
-
-
 
 
 
@@ -301,10 +328,6 @@ function ValidateName() {
    return !(regex.test(nameimage.value));
 }
 
-//  ฟังชั่นกดปุ่ม
-// Upbtn.onclick = UploadProcess;
-
-//          Downbtn.onclick = GetUrlfromRealtimeDB;
 
 
 

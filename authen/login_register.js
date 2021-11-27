@@ -13,8 +13,8 @@ const firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 // Initialize variables
-const auth = firebase.auth()
-const database = firebase.database()
+const auth = firebase.auth();
+const database = firebase.database();
 const db = firebase.firestore();
 const userList = document.querySelector('#userList');
 
@@ -51,8 +51,9 @@ function register() {
       email: document.getElementById('email').value,
       name: document.getElementById('full_name').value,
       phone: null,
-      detail: null
-      
+      detail: null,
+      image_profile: null
+
     }).then(() => {
       var user = auth.currentUser
 
@@ -69,11 +70,11 @@ function register() {
         console.log(user);
         window.location.href = 'login.html';
       }
-      
+
       alert('Register สำเร็จ')
     })
   })
-  
+
     .catch(function (error) {
       var error_code = error.code;
       var error_message = error.message
@@ -113,9 +114,9 @@ function login() {
         window.location.href = '../page/total_content.html';
         localStorage.setItem('email', email);
         console.log();
-      
-      
-        
+
+
+
       }
       // Push to Firebase Database
       database_ref.child('users/' + user.uid).update(user_data)
@@ -160,11 +161,21 @@ function validate_password(password) {
 }
 
 function SignOut() {
-  auth.SignOut();
-  alert("Sign Out");
+
+  firebase.auth().signOut().then(() => {
+    // Sign-out successful.
+    alert("Sign-out successful")
+    window.location.href = '../authen/login.html';
+    
+  }).catch((error) => {
+    // An error happened.
+  });
+
 
 
 }
+
+
 
 
 function validate_field(field) {
@@ -180,7 +191,31 @@ function validate_field(field) {
 }
 
 
+var provider = new firebase.auth.GoogleAuthProvider();
 
+function googleSignIn(){
+
+  firebase.auth().signInWithPopup(provider).then((result) => {
+    /** @type {firebase.auth.OAuthCredential} */
+    var credential = result.credential.accessToken;
+    console.log(user);
+
+    // This gives you a Google Access Token. You can use it to access the Google API.
+    var token = credential.accessToken;
+    // The signed-in user info.
+    var user = result.user;
+    // ...
+  }).catch((error) => {
+    // Handle Errors here.
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    // The email of the user's account used.
+    var email = error.email;
+    // The firebase.auth.AuthCredential type that was used.
+    var credential = error.credential;
+    // ...
+  });
+}
 
 
 

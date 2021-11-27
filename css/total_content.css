@@ -34,6 +34,7 @@ body {
 .card {
     border: none;
     background: #eee
+    
 }
 
 .search {
@@ -268,3 +269,6 @@ a.wrimagecard:hover, .wrimagecard-topimage:hover {
     box-shadow: rgba(255, 14, 14, 0.1) -5px -5px 1px 0px;
     color: #ff0000;
 }
+
+
+
