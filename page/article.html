@@ -69,7 +69,7 @@
             </li>
             <li>
                 <a href="review.html">
-                    <i class='bx bx-calendar-star'></i>
+                    <i class='bx bx-store' ></i>
                     <span class="link_name">Review</span>
                 </a>
                 <ul class="sub-menu blank">
@@ -102,55 +102,7 @@
         <div > <br>
 
 
-            <div class="row d-flex justify-content-center ">
-                <div class="col-md-8 col-lg-5">
-                    <div class="card shadow-0 border" style="background-color: #ffffff;">
-                        <div class=" p-3">
-                            <div class="">
-                                <div class="">
-
-                                    <a href="article_content.html">
-                                        <div class="d-flex justify-content-between">
-                                            <img src="https://static.trueplookpanya.com/cmsblog/3305/75305/banner_file.jpg"
-                                                class="card-img-top" alt="...">
-
-                                        </div>
-                                    </a>
-                                    <br>
-                                    <span class="text-make">เชื่อว่าทุกบ้านจะต้องมีของเหลือใช้
-                                        อาจจะเป็นสิ่งของเก่าหรือใกล้พังแล้วปล่อยทิ้งเป็นขยะ
-                                        ซึ่งของบางชิ้นยังสามารถนำกลับมาใช้งานได้
-                                        เพียงแค่ต้องดัดแปลงเพิ่มเติมตกแต่งสักหน่อย
-                                        ก็จะกลายเป็นของใหม่ใช้ประโยชน์ได้อีกครั้ง บางทีทดแทนของที่กำลังหาซื้อด้วยนะ
-                                        ไม่ใช่แค่นั้นยังถือว่าช่วยลดปริมาณขยะอีกต่างหาก
-                                        ลองไปดูกันว่าวัสดุเหลือใช้อะไรบ้างที่นำมา DIY เป็นของชิ้นใหม่ได้</span>
-
-                                </div>
-                            </div>
-
-
-                            <hr>
-                            <a href="article_content.html">
-                                <div class="col-1">
-                                    <i class='bx bx-message-square-detail' id="iconic"></i>
-                                </div>
-                            </a>
-
-
-
-                        </div>
-                    </div>
-                </div>
-            </div><br>
-
-
-
-
-
-
-
-
-
+           
 
             <div class="row d-flex justify-content-center">
                 <div class="col-md-8 col-lg-5">
@@ -161,17 +113,12 @@
 
                                     <div class="d-flex justify-content-between">
                                         <img src="https://static.trueplookpanya.com/cmsblog/3681/75681/thumb_file.jpg"
-                                            class="card-img-top" alt="...">
+                                            class="card-img-top" id="imageURL">
 
                                     </div>
                                     <br>
-                                    <span class="text-make">เชื่อว่าทุกบ้านจะต้องมีของเหลือใช้
-                                        อาจจะเป็นสิ่งของเก่าหรือใกล้พังแล้วปล่อยทิ้งเป็นขยะ
-                                        ซึ่งของบางชิ้นยังสามารถนำกลับมาใช้งานได้
-                                        เพียงแค่ต้องดัดแปลงเพิ่มเติมตกแต่งสักหน่อย
-                                        ก็จะกลายเป็นของใหม่ใช้ประโยชน์ได้อีกครั้ง บางทีทดแทนของที่กำลังหาซื้อด้วยนะ
-                                        ไม่ใช่แค่นั้นยังถือว่าช่วยลดปริมาณขยะอีกต่างหาก
-                                        ลองไปดูกันว่าวัสดุเหลือใช้อะไรบ้างที่นำมา DIY เป็นของชิ้นใหม่ได้</span>
+                                    <h5 id="showArticle_name"></h5>
+                                    <span class="text-make" id="showArticle_detail"></span>
                                 </div>
                             </div>
 
@@ -208,21 +155,16 @@
 
 
     </section>
-    <script>
-        let arrow = document.querySelectorAll(".arrow");
-        for (var i = 0; i < arrow.length; i++) {
-            arrow[i].addEventListener("click", (e) => {
-                let arrowParent = e.target.parentElement.parentElement;//selecting main parent of arrow
-                arrowParent.classList.toggle("showMenu");
-            });
-        }
-        let sidebar = document.querySelector(".sidebar");
-        let sidebarBtn = document.querySelector(".bx-menu");
-        console.log(sidebarBtn);
-        sidebarBtn.addEventListener("click", () => {
-            sidebar.classList.toggle("close");
-        });
-    </script>
+    <script src="../js/sidebar.js"> </script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+    <script src=></script>
+    <script src="../js/firebase_connect.js"></script>
+    <script src="../js/article_showdata.js"></script>
+    <script src="../js/post.js"></script>
 </body>
 
 </html>

@@ -4,10 +4,13 @@
 }
 .img img{
   margin-top: 20px;
-    border: 2px;
-    border-radius: 50%;  
-    width: 20%;
-    height: 100;
+  margin-left: 100px;
+  margin-right: 100px;
+  position: relative;
+  width: 100px;
+  height: 100px;
+  overflow: hidden;
+  border-radius: 50%;
 }
 .tetx-profile{
   margin-top: 40px;

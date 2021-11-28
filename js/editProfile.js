@@ -1,6 +1,6 @@
 const getForm = document.querySelector('#form');
 
-
+const getimage_profile = document.querySelector('#image_profile');
 
 const email = localStorage.getItem('email');
 
@@ -40,7 +40,21 @@ firebase.auth().onAuthStateChanged(function (user) {
         });
 
 
+        
 
+            const email = localStorage.getItem('email');
+    
+            db.collection('users').doc(email).get().then((result) => {
+                
+                getimage_profile.setAttribute("src",result.data().image_profile);
+                getimage_profile.setAttribute("width", "100%");
+                getimage_profile.setAttribute("height", "50%");
+                getimage_profile.setAttribute("alt", "The Pulpit Rock");
+            })
+    
+    
+    
+       
 
 
 
@@ -51,13 +65,16 @@ firebase.auth().onAuthStateChanged(function (user) {
 function updateProfile() {
 
     // // Get comment
-    image_profile = document.getElementById('image_profile').value;
+   
 
 
     UploadProcess();
 
     console.log("create product post success");
 }
+
+
+
 
 
 var files = [];
@@ -132,51 +149,73 @@ async function UploadProcess() {
 
 
     // const UploadTask = uploadBytesResumable(storageRef, ImgToUpload, metaData);
-    const UploadTask = storageRef.child("Profile/" + ImgName).put(metaData);
 
-    UploadTask.on('state-changed', (snapshot) => {
 
-    },
+
+    // Upload file and metadata to the object 'images/mountains.jpg'
+    var uploadTask = storageRef.child('Profiles/' + ImgName).put(ImgToUpload, metaData);
+
+    // Listen for state changes, errors, and completion of the upload.
+    uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
+        (snapshot) => {
+            // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+            var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+            console.log('Upload is ' + progress + '% done');
+            switch (snapshot.state) {
+                case firebase.storage.TaskState.PAUSED: // or 'paused'
+                    console.log('Upload is paused');
+                    break;
+                case firebase.storage.TaskState.RUNNING: // or 'running'
+                    console.log('Upload is running');
+                    break;
+            }
+        },
         (error) => {
-            alert("Error : ไม่สามารถอัปโหลดรูปภาพได้");
+
             switch (error.code) {
                 case 'storage/unauthorized':
-                    console.log("Error : storage/unauthorized");
                     // User doesn't have permission to access the object
                     break;
                 case 'storage/canceled':
-                    console.log("Error : storage/canceled");
                     // User canceled the upload
                     break;
 
                 // ...
 
                 case 'storage/unknown':
-                    console.log("Error : storage/unknown");
                     // Unknown error occurred, inspect error.serverResponse
                     break;
             }
         },
         () => {
-            UploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
+            // Upload completed successfully, now we can get the download URL
+            uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
+                console.log('File available at', downloadURL);
                 SaveURLtoFirestore(downloadURL);
+
             });
 
+
+
+            async function SaveURLtoFirestore(downloadURL) {
+                var name = nameimage.value;
+                var ext = extlab.innerHTML;
+
+
+                db.collection('users').doc(email).update({
+                    imageName: (name + ext),
+                    image_profile: downloadURL,
+
+
+
+
+                });
+            }
         }
     );
-    //  ฟังชั่นของ firestorage databaes
-    async function SaveURLtoFirestore(downloadURL) {
-        var name = nameimage.value;
-        var ext = extlab.innerHTML;
 
 
-        db.collection('users').doc(email).update({
-            proName: (name + ext),
-            profileURL: downloadURL,
-            
 
-        })
-    }
 
 
 
@@ -191,40 +230,3 @@ function ValidateName() {
     return !(regex.test(nameimage.value));
 }
 
-
-
-
-
-
-
-//  if (dataPost == "imgPro") {
-
-//     const UploadTask = storageRef.child("Products/" + ImgName).put(metaData);
-
-//     UploadTask.on('state-changed', (snapshot) => {
-//     },
-//        (error) => {
-//           alert("Error : ไม่สามารถอัปโหลดรูปภาพได้");
-//        },
-//        () => {
-//           UploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
-//              SaveURLtoFirestore(downloadURL);
-//           });
-
-//        }
-//     );
-//     //  ฟังชั่นของ firestorage databaes
-//     async function SaveURLtoFirestore(downloadURL) {
-//        var name = nameimage.value;
-//        var ext = extlab.innerHTML;
-
-
-//        db.collection('users').doc(email).update({
-
-//           image_profile: getForm.image_profile.value,
-
-
-
-//       });
-//     }
-//  }

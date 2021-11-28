@@ -5,9 +5,9 @@
 <head>
     <meta charset="UTF-8">
     <!--<title> Drop Down Sidebar Menu | CodingLab </title>-->
-    <link rel="stylesheet" href="admin_css/tabbar.css">
-    <link rel="stylesheet" href="admin_css/total_content.css">
-    <link rel="stylesheet" href="admin_css/profile.css">
+    <link rel="stylesheet" href="../admin_css/tabbar.css">
+    <link rel="stylesheet" href="../../css/total_content.css">
+    <link rel="stylesheet" href="../../css/profile.css">
     <!-- Boxiocns CDN Link -->
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,19 +20,18 @@
 <body>
     <div class="sidebar close">
         <div class="logo-details">
-            <img src="https://www.img.in.th/images/5c29773c206c50496733b3302976aec0.png"
-                alt="5c29773c206c50496733b3302976aec0.png" border="0" /></a>
-            <span class="logo_name">Community</span>
+            <img src="../../img/handy_logo2.png" width="70px" height="70px"></a>
+            <span class="logo_name">Handy</span>
         </div>
         <ul class="nav-links">
 
             <li>
-                <a  href="admim_profile.html">
-                    <i class='bx bx-user'></i>
-                    <span class="link_name">Profile</span>
+                <a  href="DatamanageArticle.html">
+                    <i class='bx bx-data' ></i>
+                    <span class="link_name">Manage data</span>
                 </a>
                 <ul class="sub-menu blank">
-                    <li><a class="link_name" href="#">Profile</a></li>
+                    <box-icon name='data' ></box-icon>
                 </ul>
             </li>
 
@@ -48,8 +47,8 @@
 
            
             <li>
-                <a style="background-color: #ffbb00;" href="#">
-                    <i class='bx bx-cog'></i>
+                <a  href="#">
+                    <i class='bx bxs-cog' style='color:#ffbb00'  ></i>
                     <span class="link_name">Setting</span>
                 </a>
                 <ul class="sub-menu blank">
@@ -99,21 +98,16 @@
 
 
     </section>
-    <script>
-        let arrow = document.querySelectorAll(".arrow");
-        for (var i = 0; i < arrow.length; i++) {
-            arrow[i].addEventListener("click", (e) => {
-                let arrowParent = e.target.parentElement.parentElement;//selecting main parent of arrow
-                arrowParent.classList.toggle("showMenu");
-            });
-        }
-        let sidebar = document.querySelector(".sidebar");
-        let sidebarBtn = document.querySelector(".bx-menu");
-        console.log(sidebarBtn);
-        sidebarBtn.addEventListener("click", () => {
-            sidebar.classList.toggle("close");
-        });
-    </script>
+    <script src="../../js/sidebar.js"> </script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+    <script src=></script>
+    <script src="../js/firebase_connect.js"></script>
+    <script src="../js/showdata.js"></script>
+    <script src="../js/post.js"></script>
 </body>
 
 </html>

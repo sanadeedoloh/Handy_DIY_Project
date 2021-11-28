@@ -39,7 +39,7 @@
 
             <li>
                 <a href="profile-blog.html">
-                    <i class='bx bxs-user' style='color:#ffbb00'  ></i>
+                    <i class='bx bxs-user' style='color:#ffbb00'></i>
                     <span class="link_name">Profile</span>
                 </a>
                 <ul class="sub-menu blank">
@@ -80,7 +80,7 @@
             </li>
             <li>
                 <a href="review.html">
-                    <i class='bx bx-calendar-star'></i>
+                    <i class='bx bx-store' ></i>
                     <span class="link_name">Review</span>
                 </a>
                 <ul class="sub-menu blank">
@@ -106,7 +106,7 @@
 
         </div>
         </div>
-       
+
         <br>
 
 
@@ -129,7 +129,7 @@
 
                                         <br>
                                         <div class="img profile-dt">
-                                            <img id="avatar" src="../img/avatar.png" alt="">
+                                            <img  src="../img/avatar.png" alt="" id="image_profile">
                                         </div>
 
                                         <div class="text tetx-profile">
@@ -192,11 +192,11 @@
 
                                                             <label>Image Name</label>
                                                             <input class="form-control" type="text" id="nameimage">
-                                                                <label id="extlab"></label><br><br>
+                                                            <label id="extlab"></label><br><br>
 
                                                             <br>
                                                             <div class="text-center">
-                                                                <button class="btn " id="selbtn" ><img
+                                                                <button class="btn " id="selbtn"><img
                                                                         src="../img/addimage.png" class="Bimg"
                                                                         id="myimage"></button>
                                                             </div>
@@ -229,8 +229,8 @@
                                                 <button type="button" class="btn tn-info btn-danger"
                                                     data-dismiss="modal">Cancel</button>
                                                 <button class="btn btn-info btn-warning" data-dismiss="modal"
-                                                    onclick= createArticlePost('articles',email)>Upload</button>
-                                                    
+                                                    onclick=createArticlePost()>Upload</button>
+
 
                                                 <!-- <button class="btn btn-info btn-warning" data-dismiss="modal"
                                                     onclick=" getBlogByextlab('videos','test')">Upload</button> -->
@@ -278,72 +278,70 @@
                 <br>
                 <!-- card menu -->
 
+                <div class="container-fluid ">
+                    <div class="row" id='box'></div>
+
+                </div>
+
+
+
+
+                <!-- <script>
+                    var wrapper = document.getElementById("box");
+            
+                    var myHTML = '';
+            
+                    for (var i = 0; i < 1; i++) {
+                        myHTML += `<div class="col-md-4 col-sm-4 card-body">
+                                        <div class="">
+                                            
+                                                <div class="concard">
+                                                    <img class="card" src="" height="10px" width="10px" id="imageURL">
+                                                </div>
+                                                <div class="wrimagecard">
+                                                    <div class="card-body">
+                                                        <span   id="showArticle_name"></span ><br>
+                                                        <span id="showArticle_detail"></span>
+                                                    </div>
+                                                </div>
+                                           
+                                        </div>
+                                    </div>`;
+                    }
+            
+                    wrapper.innerHTML = myHTML
+            
+                </script> -->
 
 
                 <div class="container-fluid  ">
                     <div class="row">
 
 
-                        <div class="col-md-4 col-sm-4">
-                            <div class="wrimagecard wrimagecard-topimage">
-                                <a href="#">
-                                    <div class="">
-                                        <img class="card-img-top"
-                                            src="https://static.trueplookpanya.com/cmsblog/3305/75305/thumb_file.jpg"
-                                            alt="Card image cap" height="120px">
+                        <div class="col-md-4 col-sm-4 card-body">
+                            <div class="">
+                                
+                                    <div class="concard">
+                                        <img class="card" src=""  id="imageURL">
                                     </div>
                                     <div class="wrimagecard">
                                         <div class="card-body">
-                                            <span  class="card-title"height="50px" id="article_name">สิ่งประดิษฐ์ของเหลือใช้</span >
-                                            <span id="article_detail"></span>
+                                            <span   id="showArticle_name"></span ><br>
+                                            <span id="showArticle_detail"></span>
                                         </div>
                                     </div>
-                                </a>
+                               
                             </div>
                         </div>
 
-                        <div class="col-md-4 col-sm-4">
-                            <div class="wrimagecard wrimagecard-topimage">
-                                <a href="#">
-                                    <div class="">
-                                        <img class="card-img-top"
-                                            src="https://cf.shopee.co.th/file/219d0341ba2d33c469072331c53abddb_tn"
-                                            alt="Card image cap" height="120px">
-                                    </div>
-                                    <div class="wrimagecard">
-                                        <div class="card-body">
-                                            <span  class="card-title"height="50px" >ชั้นวาง</span >
-                                            <span ></span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="col-md-4 col-sm-4">
-                            <div class="wrimagecard wrimagecard-topimage">
-                                <a href="#">
-                                    <div class="">
-                                        <img class="card-img-top"
-                                            src="https://cdn-cms.pgimgs.com/news/2018/03/table.jpg"
-                                            alt="Card image cap"  height="120px">
-                                    </div>
-                                    <div class="wrimagecard">
-                                        <div class="card-body">
-                                            <span  class="card-title" height="50px">ทำโต๊ะ</span >
-                                            <span ></span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
+                        
 
 
 
                     </div>
                 </div>
 
-                
+
 
 
             </div>
@@ -364,20 +362,15 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
-<<<<<<< HEAD
-
-    <script src="../js/firebase_connect.js"></script>
-    <script src="../js/showdata.js"></script>
-    <script src="../js/post.js"></script>
-=======
     <script src=></script>
     <script src="../js/firebase_connect.js"></script>
     <script src="../js/showdata.js"></script>
     <script src="../js/post.js"></script>
 
->>>>>>> 9873a6ef0d9cdfcdc29d036a5d0f1b71e34fd4e6
-
    
+
+
+
 
 </body>
 
