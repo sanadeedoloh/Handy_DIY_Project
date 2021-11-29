@@ -21,28 +21,51 @@ firebase.auth().onAuthStateChanged(function (user) {
 
         const email = localStorage.getItem('email');
 
-        db.collection('users').doc(email).get().then((result) => {
-            console.log(result.data());
-            getName.innerHTML = result.data().name;
-            getEmail.innerHTML = result.data().email;
-            getPhone.innerHTML = result.data().phone;
-            getDetail.innerHTML = result.data().detail;
-            console.log(result.id);
-        })
+        // db.collection('users').doc(email).get().then((result) => {
+        //     console.log(result.data());
+        //     getName.innerHTML = result.data().name;
+        //     getEmail.innerHTML = result.data().email;
+        //     getPhone.innerHTML = result.data().phone;
+        //     getDetail.innerHTML = result.data().detail;
+        //     console.log(result.id);
+        // })
 
-
+console.log(Date());
 
         db.collection('videos').get().then(vdo => {
 
             vdo.docs.forEach(doc => {
-                console.log(doc.data());
-                getVdo_name.innerHTML = doc.data().vdo_name;
-                getVdo_detail.innerHTML = doc.data().vdo_detail;
+               
 
-                getVdo_url.setAttribute("src",doc.data().videoURL);
-                getVdo_url.setAttribute("width", "100%");
-                getVdo_url.setAttribute("height", "50%");
-                getVdo_url.setAttribute("alt", "The Pulpit Rock");
+
+
+                var row =` <div class="row d-flex justify-content-center ">
+                <div class="col-md-8 col-lg-5">
+                    <div class="card shadow-0 border">
+                        <div class=" p-3">
+                            <div class="">
+                                <div class="">
+                                    <a href="">
+                                        <div class="card">
+                                            <video class="video-fluid z-depth-1" src="${doc.data().videoURL}" autoplay loop controls muted></video>
+                                        </div>
+                                    </a>
+                                    <br>
+                                    <h5 >${doc.data().vdo_name}</h5>
+                                    <span class="text-make" >${doc.data().vdo_detail} </span>
+                                </div>
+                            </div>
+                            <hr>
+                            <a href="video_content.html">
+                                <div class="col-1">
+                                    <i class='bx bx-message-square-detail' id="iconic"></i>
+                                </div>
+                            </a> 
+                        </div>
+                    </div>
+                </div>
+            </div><br>`;
+            $("#box").append(row)
                 
             })
 
