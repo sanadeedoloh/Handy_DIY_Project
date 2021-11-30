@@ -58,6 +58,7 @@ firebase.auth().onAuthStateChanged(function (user) {
         let id = e.target.getAttribute('data-id')
         db.collection('videos').doc(id).delete().then(() => {
           console.log("Document successfully deleted!");
+          location.reload();
         }).catch((error) => {
           console.error("Error removing document: ", error);
         })

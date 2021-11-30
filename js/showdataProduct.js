@@ -70,12 +70,7 @@ firebase.auth().onAuthStateChanged(function (user) {
                             <a href="${doc.data().shop_link}" ><i class='bx bx-link-alt' style='color:#af0404'><span>Shopping</span></i></a>
                         </div>
                         <hr>
-                        <div class="rating"> 
-                            <input type="radio" name="rating" value="5" id="5"><label for="5">☆</label>
-                            <input type="radio" name="rating" value="5" id="5"><label for="5">☆</label>
-                            <input type="radio" name="rating" value="5" id="5"><label for="5">☆</label>
-                            <input type="radio" name="rating" value="5" id="5"><label for="5">☆</label>
-                            <input type="radio" name="rating" value="5" id="5"><label for="5">☆</label>
+                        <div > 
                         </div>
                     </div>
                 </div>

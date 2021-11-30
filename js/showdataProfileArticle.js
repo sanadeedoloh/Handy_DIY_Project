@@ -23,7 +23,7 @@ firebase.auth().onAuthStateChanged(function (user) {
         const email = localStorage.getItem('email');
 
         db.collection('users').doc(email).get().then((result) => {
-            console.log(result.data());
+            console.log(email);
             getName.innerHTML = result.data().name;
             getEmail.innerHTML = result.data().email;
             getPhone.innerHTML = result.data().phone;

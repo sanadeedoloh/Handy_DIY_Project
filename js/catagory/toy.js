@@ -82,15 +82,13 @@ firebase.auth().onAuthStateChanged(function (user) {
                     <div class="wrimagecard wrimagecard-topimage">
                         <a href="video_content.html" id="viewVDO">
                             <div class="card">
-                                <video class="video-fluid" autoplay loop controls muted src="${doc.data().videoURL}"
-                                type="video/mp4" >
-                                   
-                                </video>
+                            <img src="${doc.data().imageURL}"
+                            class="card-img-top" >
                     
                             </div>
                             <div class="wrimagecard">
                                 <div class="card-body">
-                                    <span class="card-title" >${doc.data().vdo_name}</span><br>
+                                    <span class="card-title" >${doc.data().article_name}</span><br>
                                     
                                 </div>
                             </div>

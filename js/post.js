@@ -49,6 +49,7 @@ function createArticlePost() {
    UploadProcess(dataPost);
    boxArt()
    console.log("create article post success");
+   alert("create video post success")
 
 
 
@@ -259,7 +260,7 @@ async function UploadProcess(dataPost) {
                   
 
                })
-               alert("create video post success")
+               
             }
          }
       );
