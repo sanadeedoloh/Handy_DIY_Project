@@ -2,69 +2,72 @@
 
 
 firebase.auth().onAuthStateChanged(function (user) {
-    if (user) {
+  if (user) {
 
-        const email = localStorage.getItem('email');
+    const email = localStorage.getItem('email');
 
+
+
+
+
+    db.collection('articles').get().then(article => {
       
 
 
-
-        db.collection('articles').get().then(article => {
-
-            article.docs.forEach(doc => {
-           
-                var row =` 
+      article.docs.forEach(doc => {
+        var articlename = doc.data().article_name;
+        
+        var row = ` 
                 <tr id="data-id">
-                  <th scope="row">1</th>
+                  <th scope="row"></th>
                     <td><img src="${doc.data().imageURL}" width="80px" height"80px" ></td>
                   <td><span>${doc.data().article_name}</span></td>
                   <td><span>${doc.data().article_detail}</span></td>
-                  <td><p type="submit" class="btn btn-danger" >submit<i class='bx bxs-coffee-togo' style='color:#ffffff'  ></i></p></td>
+                  <td id="td4"></td>
                 </tr>
                
               `;
-            $("#box").append(row)
-                
-            })
+        $("#box").append(row)
+        showdata(doc); 
 
-
-        })
         
-        $( "p" ).click(function() {
-            $( this ). db.collection('articles').doc().delete({
-
-                // name: getdata.name.value,
-                // phone: getdata.phone.value,
-                // detail: getdata.detail.value
-
-            });
-          });
-       
-
-        function myFunctionq(){
-           console.log("uuuuu");
-           
-            db.collection('articles').doc().delete({
-
-                // name: getdata.name.value,
-                // phone: getdata.phone.value,
-                // detail: getdata.detail.value
-
-            });
-
-           
-
-            // alert('ลบข้อมูลเรียบร้อย')
-            return
+    
+      })
 
 
-        }
+    })
+    
+  function showdata(doc) {
+    let td = document.getElementById('td4')
+    let btn = document.createElement('button')
+    var table = document.querySelector('#tbresult')
+    var row = table.insertRow(-1);
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    var cell3 = row.insertCell(2);
+    var cell4 = row.insertCell(3);
+    var cell5 = row.insertCell(4);
+
+     btn.textContent='Delete';
+     btn.setAttribute('data-id',doc.id)
+     btn.setAttribute('class','btn btn-danger')
+     cell5.appendChild(btn)
+     btn.addEventListener('click',(e => {
+      let id =e.target.getAttribute('data-id')
+      db.collection('articles').doc(id).delete().then(() => {
+            console.log("Document successfully deleted!");
+          }).catch((error) => {
+            console.error("Error removing document: ", error);
+          })
+    }));
+  }
 
 
 
+  
+ 
 
-    }
+  }
 }
 )
 

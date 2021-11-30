@@ -26,8 +26,8 @@
         <ul class="nav-links">
 
             <li>
-                <a  href="#">
-                    <i class='bx bxs-data' style='color:#ffbb00'  ></i>
+                <a href="#">
+                    <i class='bx bxs-data' style='color:#ffbb00'></i>
                     <span class="link_name">Manage data</span>
                 </a>
                 <ul class="sub-menu blank">
@@ -35,7 +35,7 @@
                 </ul>
             </li>
 
-            <li>
+            <!-- <li>
                 <a href="admin_notification.html">
                     <i class='bx bx-bell'></i>
                     <span class="link_name">Notification</span>
@@ -43,7 +43,7 @@
                 <ul class="sub-menu blank">
                     <li><a class="link_name" href="#">Notification</a></li>
                 </ul>
-            </li>
+            </li> -->
 
 
             <li>
@@ -71,35 +71,51 @@
         <br><br>
         <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
 
- <div class="d-flex justify-content-center  ">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="wrimagecard wrimagecard-topimage">
-                                <a href="#">
-                                    <div class="wrimagecard-topimage_header"
-                                        style="background-color:rgba(255, 242, 0, 0.1) ">
-                                        <center><i class="fa fa-newspaper-o" style="color:#ffcd42"></i></center>
-                                    </div>
-                                   
-                                </a>
+        <div class="d-flex justify-content-center  ">
+            <div class="row">
+                <div class="col-md-4 ">
+                    <div class="card">
+                        <a href="#">
+
+                            <div class="wrimagecard-topimage_title">
+                                <h4 class="text-center text-warning">Article
+
+                                </h4>
                             </div>
-                        </div>
-                        <div class="col-md-6 ">
-                            <div class="wrimagecard wrimagecard-topimage">
-                                <a href="DatamanageVdo.html">
-                                    <div class="wrimagecard-topimage_header"
-                                        style="background-color: rgba(255, 255, 255, 0.1) ">
-                                        <center><i class="fa fa-play-circle" style="color:#a1a1a1"></i></center>
-                                    </div>
-                                    
-                                </a>
+                        </a>
+                    </div>
+                </div><br><br>
+
+                <br><br>
+                <div class="col-md-4 ">
+                    <div class="wrimagecard wrimagecard-topimage">
+                        <a href="DatamanageVdo.html">
+
+                            <div class="wrimagecard-topimage_title">
+                                <h4 class="text-center">Video
+                                    <div class="pull-right badge" id="WrControls"></div>
+                                </h4>
                             </div>
-                        </div>
-                   
-                        
-                   
+                        </a>
                     </div>
                 </div>
+                <div class="col-md-4 ">
+                    <div class="wrimagecard wrimagecard-topimage">
+                        <a href="DatamanageProduct.html">
+
+                            <div class="wrimagecard-topimage_title">
+                                <h4 class="text-center">Product
+                                    <div class="pull-right badge" id="WrControls"></div>
+                                </h4>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
         <br>
 
 
@@ -110,26 +126,27 @@
 
 
 
-               
 
 
 
 
-                <table class="table">
-                    <thead class="thead bg-warning">
-                      <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Image</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Detail</th>
-                        <th scope="col">Delete</th>
-                      </tr>
+
+                <table class="table"id="tbresult" >
+                    <thead class="thead bg-warning" >
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col" >Image</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Detail</th>
+                            <th scope="col" >Delete</th>
+                        </tr>
                     </thead>
                     <tbody id="box">
-                     
-                
-                    </tbody >
-                  </table>
+
+                 
+
+                    </tbody>
+                </table>
 
 
             </div>

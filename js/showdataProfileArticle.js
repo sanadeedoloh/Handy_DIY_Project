@@ -53,12 +53,12 @@ firebase.auth().onAuthStateChanged(function (user) {
                         var row = `<div class="col-md-4 col-sm-4 card-body">
                         <div class="wrimagecard wrimagecard-topimage">
                         <div class="concard">
-                        <img class="card" src="${doc.data().imageURL}" width="100%" height="150px">
+                        <img class="" src="${doc.data().imageURL}" width="100%" height="160px">
                         </div>
                         <div class="wrimagecard">
                         <div class="card-body">
                         <span   >${doc.data().article_name}</span ><br>
-                        <span >${doc.data().article_detail}</span>
+                        
                         </div>
                         </div>
             
@@ -114,3 +114,38 @@ firebase.auth().onAuthStateChanged(function (user) {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+// function showdata(doc) {
+
+//     var row = table.insertRow(-1);
+//     var cell1 = row.insertCell(0);
+//     var cell2 = row.insertCell(1);
+//     var cell3 = row.insertCell(2);
+//     var cell4 = row.insertCell(3);
+//     var cell5 = row.insertCell(4);
+
+//     cell2.innerHTML = img.setAttribute("src", doc.data().imageURL);
+//     img.setAttribute("width", "100px");
+//     img.setAttribute("height", "100px");
+//     document.body.appendChild(img);
+//     // getArticle_image.setAttribute("alt", "The Pulpit Rock");
+//     cell3.innerHTML = doc.data().article_name;
+//     cell4.innerHTML = doc.data().article_detail;
+
+
+
+
+
+//   }

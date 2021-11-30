@@ -65,6 +65,7 @@ function register() {
         last_login: Date.now()
 
       }
+      
       if (user) {
         // User is login in.
         console.log(user);
@@ -108,7 +109,11 @@ function login() {
         last_login: Date.now()
 
       }
-      if (user) {
+      if (email === "handy.project01@gmail.com") {
+        // User is login in.
+        console.log(user);
+        window.location.href = '../admin/admin_page/DatamanageArticle.html';
+      }else {
         // User is login in.
         console.log(user);
         window.location.href = '../page/total_content.html';
@@ -164,9 +169,26 @@ function SignOut() {
 
   firebase.auth().signOut().then(() => {
     // Sign-out successful.
+  
     alert("Sign-out successful")
     window.location.href = '../authen/login.html';
-    
+  
+  }).catch((error) => {
+    // An error happened.
+  });
+
+
+
+}
+
+function SignOutAdmin() {
+
+  firebase.auth().signOut().then(() => {
+    // Sign-out successful.
+ 
+    alert("Sign-out successful")
+    window.location.href = '../../authen/login.html';
+   
   }).catch((error) => {
     // An error happened.
   });

@@ -2,10 +2,19 @@
 const getVideo_name = document.querySelector('#vdo_name');
 const getVideo_detail = document.querySelector('#vdo_detail');
 
+// catagory = document.getElementById('catagory1').value;
+// catagory = document.getElementById('catagory2').value;
+// catagory = document.getElementById('catagory3').value;
+
+
+
+
+
+
 
 const email = localStorage.getItem('email');
 
-var dataPost;
+
 
 // create vdo
 function createVdoPost() {
@@ -15,9 +24,11 @@ function createVdoPost() {
 
    vdo_name = document.getElementById('vdo_name').value;
    vdo_detail = document.getElementById('vdo_detail').value;
+   catagory = document.getElementById('catagory').value;
+   
+      UploadProcess(dataPost);
 
-
-   UploadProcess(dataPost);
+   
    console.log("create video post success");
 
 
@@ -33,13 +44,13 @@ function createArticlePost() {
 
    article_name = document.getElementById('article_name').value;
    article_detail = document.getElementById('article_detail').value;
-
-
+   catagory = document.getElementById('catagory').value;
+   
    UploadProcess(dataPost);
    boxArt()
    console.log("create article post success");
 
-  
+
 
 
 }
@@ -244,9 +255,11 @@ async function UploadProcess(dataPost) {
                   userId: email,
                   article_name: document.getElementById('article_name').value,
                   article_detail: document.getElementById('article_detail').value,
-
+                  catagory: document.getElementById('catagory').value,
+                  
 
                })
+               alert("create video post success")
             }
          }
       );
@@ -317,9 +330,12 @@ async function UploadProcess(dataPost) {
                   vdo_name: document.getElementById('vdo_name').value,
                   vdo_detail: document.getElementById('vdo_detail').value,
                   userId: email,
+                  catagory: document.getElementById('catagory').value,
+
 
 
                })
+               alert("create video post success")
             }
 
 
@@ -327,6 +343,9 @@ async function UploadProcess(dataPost) {
       );
 
    }
+
+
+
 
    // เก็บข้อมูลสินค้า
    if (dataPost == "product") {
@@ -391,14 +410,15 @@ async function UploadProcess(dataPost) {
                   facebook: document.getElementById('facebook').value,
                   shop_link: document.getElementById('shop_link').value,
                   userId: email,
-      
-      
+
+
                })
+               alert("create video post success")
             }
          }
       );
 
-      
+
    }
 
 
@@ -414,13 +434,13 @@ function ValidateName() {
 }
 
 
-function boxArt(){
+function boxArt() {
    var wrapper = document.getElementById("box");
-   
+
    var myHTML = '';
 
    for (var i = 0; i < 1; i++) {
-       myHTML += `<div class="col-md-4 col-sm-4 card-body">
+      myHTML += `<div class="col-md-4 col-sm-4 card-body">
                        <div class="">
                            
                                <div class="concard">
@@ -428,7 +448,7 @@ function boxArt(){
                                </div>
                                <div class="wrimagecard">
                                    <div class="card-body">
-                                       <span   ${id="showArticle_name"}></span ><br>
+                                       <span   ${id = "showArticle_name"}></span ><br>
                                        <span id="showArticle_detail"></span>
                                    </div>
                                </div>

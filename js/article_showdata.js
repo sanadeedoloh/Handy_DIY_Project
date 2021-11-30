@@ -21,14 +21,18 @@ firebase.auth().onAuthStateChanged(function (user) {
 
         const email = localStorage.getItem('email');
 
-        // db.collection('users').doc(email).get().then((result) => {
-        //     console.log(result.data());
-        //     getName.innerHTML = result.data().name;
-        //     getEmail.innerHTML = result.data().email;
-        //     getPhone.innerHTML = result.data().phone;
-        //     getDetail.innerHTML = result.data().detail;
-        //     console.log(result.id);
-        // });
+        function iconPro(){ 
+            var pro =``;
+        }
+
+        db.collection('users').doc(email).get().then((result) => {
+            console.log(result.data());
+            getName.innerHTML = result.data().name;
+            getEmail.innerHTML = result.data().email;
+            getPhone.innerHTML = result.data().phone;
+            getDetail.innerHTML = result.data().detail;
+            console.log(result.id);
+        });
 
 
 
@@ -73,7 +77,7 @@ firebase.auth().onAuthStateChanged(function (user) {
               </div></div><br>`;
 
                 $("#box").append(row)
-
+             iconPro();
 
             });
 

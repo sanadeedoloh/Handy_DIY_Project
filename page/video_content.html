@@ -69,7 +69,7 @@
             </li>
             <li>
                 <a href="review.html">
-                    <i class='bx bx-store' ></i>
+                    <i class='bx bx-store'></i>
                     <span class="link_name">Store</span>
                 </a>
                 <ul class="sub-menu blank">
@@ -85,9 +85,9 @@
                     <li><a class="link_name" href="#">Setting</a></li>
                 </ul>
             </li>
-     
+
         </ul>
-    </div>                      
+    </div>
     <!--  ส่วนเนื้อหา -->
     <section class="home-section">
         <div class="home-content shadow">
@@ -95,121 +95,31 @@
 
         </div>
 
-        
+
         <br>
 
 
-        <div class="row d-flex justify-content-center">
-            <div class="col-md-8 col-lg-6">
+        <div class="row d-flex justify-content-center" id="boxvdo">
+            <!-- <div class="col-md-8 col-lg-6">
                 <div class="card shadow-0 border" style="background-color: #ffffff;">
                     <div class="card-body p-4">
                         <div class="card">
-                            
+
 
                             <video class="video-fluid z-depth-1" autoplay loop controls muted>
                                 <source src="https://mdbootstrap.com/img/video/Sail-Away.mp4" type="video/mp4" />
-                              </video>
-                            
+                            </video>
+
                         </div>
-                        <br><span >เชื่อว่าทุกบ้านจะต้องมีของเหลือใช้</span>
+                        <br><span>เชื่อว่าทุกบ้านจะต้องมีของเหลือใช้</span>
                         <hr class="style3">
-                            <div class="row justify-content-start">
-                               
-                                <div >
-                                    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-                                    <div class="container">
-                                        <div class="be-comment-block">
-                                            <h1 class="comments-title">Comments (3)</h1>
-                                            <div class="be-comment">
-                                                <div class="be-img-comment">
-                                                    <a href="blog-detail-2.html">
-                                                        <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt=""
-                                                            class="be-ava-comment">
-                                                    </a>
-                                                </div>
-                                                <div class="be-comment-content">
-                        
-                                                    <span class="be-comment-name">
-                                                        <a href="blog-detail-2.html">Sundy</a>
-                                                    </span>
-                                                    <span class="be-comment-time">
-                                                        <i class="fa fa-clock-o"></i>
-                                                        May 27, 2015 at 3:14am
-                                                    </span>
-                        
-                                                    <p class="be-comment-text">
-                                                        ข้อมูลดี
-                                                    </p>
-                                                </div>
-                                            </div>
-                                            <div class="be-comment">
-                                                <div class="be-img-comment">
-                                                    <a href="blog-detail-2.html">
-                                                        <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt=""
-                                                            class="be-ava-comment">
-                                                    </a>
-                                                </div>
-                                                <div class="be-comment-content">
-                                                    <span class="be-comment-name">
-                                                        <a href="blog-detail-2.html">Ae</a>
-                                                    </span>
-                                                    <span class="be-comment-time">
-                                                        <i class="fa fa-clock-o"></i>
-                                                        May 27, 2015 at 3:14am
-                                                    </span>
-                                                    <p class="be-comment-text">
-                                                        มีประโยชน์มากเลยครับ กลายเป็นของใหม่ใช้ประโยชน์ได้อีกครั้ง
-                                                        บางทีทดแทนของที่กำลังหาซื้อด้วย
-                                                    </p>
-                                                </div>
-                                            </div>
-                                            <div class="be-comment">
-                                                <div class="be-img-comment">
-                                                    <a href="blog-detail-2.html">
-                                                        <img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt=""
-                                                            class="be-ava-comment">
-                                                    </a>
-                                                </div>
-                                                <div class="be-comment-content">
-                                                    <span class="be-comment-name">
-                                                        <a href="blog-detail-2.html">Baow</a>
-                                                    </span>
-                                                    <span class="be-comment-time">
-                                                        <i class="fa fa-clock-o"></i>
-                                                        May 27, 2015 at 3:14am
-                                                    </span>
-                                                    <p class="be-comment-text">
-                                                        ต้องหาทำแล้ว
-                                                    </p>
-                                                </div>
-                                            </div>
-                                            <form class="form-block">
-                                                <div class="row">
-                                                   
-                                                    <div class="col">
-                                                        <div class="form-group">
-                                                            <textarea class="form-input" required="" placeholder="Your text"></textarea>
-                                                        </div>
-                                                    </div>
-                        
-                                                </div>
-                                                <div>
-                                                    <a class="btn btn-warning pull-right"><i class='bx bx-send'></i></a>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-
-                              </div>
+                       
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div><br>
 
-       
+
 
 
 
@@ -225,7 +135,16 @@
 
     </section>
     <script src="../js/sidebar.js"> </script>
-    
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+    <script src=></script>
+    <script src="../js/firebase_connect.js"></script>
+    <script src="../js/showdataProfileVDO.js"></script>
+   
+
 </body>
 
 </html>
