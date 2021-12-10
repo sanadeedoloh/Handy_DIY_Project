@@ -22,7 +22,7 @@ firebase.auth().onAuthStateChanged(function (user) {
                   <th scope="row"></th>
                     <td><img src="${doc.data().productURL}" width="80px" height"80px" ></td>
                   <td><span>${doc.data().pd_name}</span></td>
-                  <td><span>${doc.data().pd_name}</span></td>
+                  <td><div><span>${doc.data().pd_detail}</div></span></td>
                   <td id="td4"></td>
                 </tr>
                

@@ -40,21 +40,21 @@ firebase.auth().onAuthStateChanged(function (user) {
 
 
 
-        
 
 
-            db.collection('articles').get().then(article => {
-                
-                article.docs.forEach(doc => {
-                    console.log(doc.data().userId);
 
-                    if (email === doc.data().userId) {
+        db.collection('articles').get().then(article => {
 
-                        var row = `<div class="col-md-4 col-sm-4 card-body">
+            article.docs.forEach(doc => {
+                // console.log(doc.data().userId);
+
+                if (email === doc.data().userId) {
+
+                    var row = `<a href="article_content.html" id="${doc.id}"><div class="col-md-4 col-sm-4 card-body">
                         <div class="wrimagecard wrimagecard-topimage">
                         <div class="concard">
                         <img class="" src="${doc.data().imageURL}" width="100%" height="160px">
-                        </div>
+                        </div></a>
                         <div class="wrimagecard">
                         <div class="card-body">
                         <span   >${doc.data().article_name}</span ><br>
@@ -65,37 +65,56 @@ firebase.auth().onAuthStateChanged(function (user) {
                         </div>
                         </div>`;
 
-                        $("#box").append(row)
-                        
+                    $("#box").append(row)
+                    // showdata(doc);
+                    console.log(doc.id);
 
-                        
-                    }
-
-                    // getArticle_name.innerHTML = doc.data().article_name;
-                    // getArticle_detail.innerHTML = doc.data().article_detail;
-
-                    // getArticle_image.setAttribute("src", doc.data().imageURL);
-                    // getArticle_image.setAttribute("width", "100%");
-                    // getArticle_image.setAttribute("height", "150px");
-                    // getArticle_image.setAttribute("alt", "The Pulpit Rock");
+                }
 
 
 
-                   
-
-
-
-
-                });
-
-            
             });
 
-       
+
+        });
 
 
 
 
+
+        // function showdata(doc) {
+
+        //     let btn = document.createElement('a')
+        //     var view = document.querySelector('#box')
+
+
+        //     btn.textContent = 'View';
+        //     btn.setAttribute('data-id', doc.id)
+        //     btn.setAttribute('href', 'article_content.html')
+        //     // btn.setAttribute('class', 'btn btn-danger')
+        //     view.appendChild(btn)
+        //     btn.addEventListener('click', (e => {
+        //         // window.location.href = 'article_content.html'+show();
+        //         let id = e.target.getAttribute('data-id')
+        //         db.collection('articles').doc(id).get().then((doc) => {
+        //             console.log(id);
+        //             getArticle_name.innerHTML = result.data().article_name;
+        //             getArticle_detail.innerHTML = result.data().article_detail;
+
+        //             getArticle_image.setAttribute("src", result.data().imageURL);
+        //             getArticle_image.setAttribute("width", "100%");
+        //             getArticle_image.setAttribute("height", "50%");
+        //             getArticle_image.setAttribute("alt", "The Pulpit Rock");
+                    
+
+        //         })
+
+        //     }));
+
+
+
+
+        // }
 
 
 

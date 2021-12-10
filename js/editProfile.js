@@ -1,4 +1,7 @@
 const getForm = document.querySelector('#form');
+const getname = document.querySelector('#name');
+const getphoneNumber = document.querySelector('#phoneNumber');
+const getdetail = document.querySelector('#detail');
 
 const getimage_profile = document.querySelector('#image_profile');
 
@@ -13,10 +16,10 @@ firebase.auth().onAuthStateChanged(function (user) {
 
         getForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            console.log(getForm.name.value);
-            console.log(getForm.phone.value);
-            console.log(getForm.detail.value);
-            console.log(user.email);
+            // console.log(getForm.name.value);
+            // console.log(getForm.phone.value);
+            // console.log(getForm.detail.value);
+            // console.log(user.email);
 
 
             db.collection('users').doc(email).update({
@@ -27,34 +30,41 @@ firebase.auth().onAuthStateChanged(function (user) {
 
             });
 
+
+
+            alert('อัปเดทการเปลี่ยนแปลงแล้ว')
+            return
+
             // if (user) {
 
             //     console.log(user);
             //     window.location.href = 'profile-blog.html';
             //   }
 
-            alert('อัปเดทการเปลี่ยนแปลงแล้ว')
-            return
-
 
         });
 
 
-        
 
-            const email = localStorage.getItem('email');
-    
-            db.collection('users').doc(email).get().then((result) => {
-                
-                getimage_profile.setAttribute("src",result.data().image_profile);
-                getimage_profile.setAttribute("width", "100%");
-                getimage_profile.setAttribute("height", "50%");
-                getimage_profile.setAttribute("alt", "The Pulpit Rock");
-            })
-    
-    
-    
-       
+
+
+        const email = localStorage.getItem('email');
+
+        db.collection('users').doc(email).get().then((result) => {
+
+            getimage_profile.setAttribute("src", result.data().image_profile);
+            getimage_profile.setAttribute("width", "100%");
+            getimage_profile.setAttribute("height", "50%");
+            getimage_profile.setAttribute("alt", "The Pulpit Rock");
+
+            getname.setAttribute('value', result.data().name);
+            getphoneNumber.setAttribute('value', result.data().phone);
+            getdetail.setAttribute('value', result.data().detail);
+        })
+
+
+
+
 
 
 
@@ -65,7 +75,7 @@ firebase.auth().onAuthStateChanged(function (user) {
 function updateProfile() {
 
     // // Get comment
-   
+
 
 
     UploadProcess();
